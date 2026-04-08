@@ -14,6 +14,6 @@ Quick grep: `grep "^## \[" log.md | tail -10`
 
 ## [2026-04-07] compile | AgentFold 论文摘要（1篇 summary）+ 3个 concept pages（上下文管理、ReAct 范式、上下文饱和）+ 1个 entity page（阿里巴巴通义实验室）
 
-## [2026-04-08] ingest | skillrouter — SkillRouter 论文（arXiv 2603.22455）：1.2B Retrieve-and-Rerank 管道，80K 技能路由，74.0% Hit@1，5.8× 加速
+## [2026-04-08] ingest | skillrouter — SkillRouter 论文（arXiv 2603.22455）：1.2B Retrieve-and-Rerank 管道，80K 技能路由，74.0% Hit@1，5.8× 加速，含原始 PDF + 深度阅读报告
 
-## [2026-04-08] ingest | skillrouter-related — 3篇同批次论文（horizonweaver、diffusion-restoration、email-deception）摘要已存入 wiki/summaries/ 待后续处理
+## [2026-04-08] cleanup | 移除3篇误 ingest 的无关论文（horizonweaver、diffusion-restoration、email-deception）

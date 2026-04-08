@@ -2,7 +2,7 @@
 title: SkillRouter 论文摘要
 type: summary
 created: 2026-04-08
-sources: ["raw/papers/skillrouter.md"]
+sources: ["raw/papers/2603.22455v1.pdf", "raw/papers/2603.22455v1_深度阅读报告.md"]
 tags: [Skill Routing, LLM Agent, Retrieve-and-Rerank, Large-Scale Skills]
 ---
 
