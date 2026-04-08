@@ -3,7 +3,7 @@ title: ACON 论文摘要
 type: summary
 created: 2026-04-07
 updated: 2026-04-07
-sources: ["raw/papers/acon.pdf", "https://arxiv.org/abs/2510.00615"]
+sources: ["raw/papers/ACON_2510.00615.pdf", "https://arxiv.org/abs/2510.00615"]
 tags: [LLM Agent, 上下文压缩, Long-Horizon, Context Management, Distillation]
 ---
 

@@ -19,3 +19,5 @@ Quick grep: `grep "^## \[" log.md | tail -10`
 ## [2026-04-08] cleanup | 移除3篇误 ingest 的无关论文（horizonweaver、diffusion-restoration、email-deception）
 
 ## [2026-04-08] compile | skillrouter 补充：新增3个 concept pages（技能路由、Retrieve-and-Rerank、Progressive Disclosure）+ 文件规范化
+
+## [2026-04-08] compile | ACON 规范化：重命名 PDF（acon.pdf → ACON_2510.00615.pdf）、更正 arxiv URL、补充3个 concept pages（压缩准则优化、对比轨迹、语义压缩）+ 2个 entity pages（Microsoft Research、KAIST）+ 更新 index/log

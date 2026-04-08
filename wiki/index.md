@@ -13,9 +13,14 @@ Master catalog of all wiki pages. Updated on every ingest.
 - [[技能路由]] — SkillRouter 研究的核心问题：在超大规模技能库中如何精准定位相关技能
 - [[Retrieve-and-Rerank]] — 两阶段排序范式：稀疏检索召回 Top-K + Reranker 重排，精度与效率平衡
 - [[Progressive Disclosure]] — LLM Agent 技能系统的设计策略：隐藏技能体以减少上下文，代价是 31-44 pp 精度损失
+- [[压缩准则优化]] — ACON 核心方法：压缩准则 Prompt 本身是可优化资产，自然语言空间梯度，无需更新模型参数
+- [[对比轨迹]] — ACON 的对比学习信号来源：完整上下文成功 vs 压缩上下文失败的轨迹对比，提供密集反馈
+- [[语义压缩]] — ACON 的压缩层次：语义级保留异构上下文信息（因果/状态/前置条件），与 KV Cache 压缩正交
 
 ## Entities
 
+- [[Microsoft Research]] — ACON 论文主要作者团队（Wei-Ning Chen, Dongge Han 等），GitHub: microsoft/acon
+- [[KAIST]] — Minki Kang（ACON 第一作者）所属院校，韩国顶尖研究型大学
 - [[阿里巴巴通义实验室]] — AgentFold 和 SkillRouter 论文作者团队，Tongyi Lab，Alibaba Group
 
 ## Summaries
