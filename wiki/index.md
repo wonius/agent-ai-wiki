@@ -10,10 +10,11 @@ Master catalog of all wiki pages. Updated on every ingest.
 - [[多尺度状态摘要]] — AgentFold 核心数据结构，由 s(x,y) 摘要块组成的有序序列
 - [[深度整合]] — AgentFold 折叠操作之一，k<t-1 时触发，压缩多步为粗粒度摘要
 - [[粒度凝缩]] — AgentFold 折叠操作之一，k=t-1 时触发，保护单步关键细节不被后续压缩影响
+- [[技能路由]] — SkillRouter 研究的核心问题：在超大规模技能库中如何精准定位相关技能
 
 ## Entities
 
-- [[阿里巴巴通义实验室]] — AgentFold 论文作者团队，Tongyi Lab，Alibaba Group
+- [[阿里巴巴通义实验室]] — AgentFold 和 SkillRouter 论文作者团队，Tongyi Lab，Alibaba Group
 
 ## Summaries
 
