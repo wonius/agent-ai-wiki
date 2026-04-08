@@ -17,3 +17,5 @@ Quick grep: `grep "^## \[" log.md | tail -10`
 ## [2026-04-08] ingest | skillrouter — SkillRouter 论文（arXiv 2603.22455）：1.2B Retrieve-and-Rerank 管道，80K 技能路由，74.0% Hit@1，5.8× 加速，含原始 PDF + 深度阅读报告
 
 ## [2026-04-08] cleanup | 移除3篇误 ingest 的无关论文（horizonweaver、diffusion-restoration、email-deception）
+
+## [2026-04-08] compile | skillrouter 补充：新增3个 concept pages（技能路由、Retrieve-and-Rerank、Progressive Disclosure）+ 文件规范化

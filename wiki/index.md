@@ -11,6 +11,8 @@ Master catalog of all wiki pages. Updated on every ingest.
 - [[深度整合]] — AgentFold 折叠操作之一，k<t-1 时触发，压缩多步为粗粒度摘要
 - [[粒度凝缩]] — AgentFold 折叠操作之一，k=t-1 时触发，保护单步关键细节不被后续压缩影响
 - [[技能路由]] — SkillRouter 研究的核心问题：在超大规模技能库中如何精准定位相关技能
+- [[Retrieve-and-Rerank]] — 两阶段排序范式：稀疏检索召回 Top-K + Reranker 重排，精度与效率平衡
+- [[Progressive Disclosure]] — LLM Agent 技能系统的设计策略：隐藏技能体以减少上下文，代价是 31-44 pp 精度损失
 
 ## Entities
 
