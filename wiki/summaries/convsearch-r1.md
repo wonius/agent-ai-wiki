@@ -3,7 +3,7 @@ title: ConvSearch-R1 论文摘要
 type: summary
 created: 2026-04-07
 updated: 2026-04-07
-sources: ["raw/papers/convsearch-r1.pdf", "https://arxiv.org/abs/2505.15776"]
+sources: ["raw/papers/ConvSearch-R1_2503.21278.pdf", "raw/papers/ConvSearch-R1_深度阅读报告.md"]
 tags: [Conversational Search, Query Reformulation, Reinforcement Learning, Information Retrieval, EMNLP 2025]
 ---
 

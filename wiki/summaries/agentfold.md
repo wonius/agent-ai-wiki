@@ -3,7 +3,7 @@ title: AgentFold 论文摘要
 type: summary
 created: 2026-04-07
 updated: 2026-04-07
-sources: ["raw/papers/AgentFold_深度阅读报告.md"]
+sources: ["raw/papers/AgentFold_2510.24699.pdf", "raw/papers/AgentFold_深度阅读报告.md"]
 tags: [Web Agent, 上下文管理, Long-Horizon, Context Management]
 ---
 

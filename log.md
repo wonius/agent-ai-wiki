@@ -21,3 +21,9 @@ Quick grep: `grep "^## \[" log.md | tail -10`
 ## [2026-04-08] compile | skillrouter 补充：新增3个 concept pages（技能路由、Retrieve-and-Rerank、Progressive Disclosure）+ 文件规范化
 
 ## [2026-04-08] compile | ACON 规范化：重命名 PDF（acon.pdf → ACON_2510.00615.pdf）、更正 arxiv URL、补充3个 concept pages（压缩准则优化、对比轨迹、语义压缩）+ 2个 entity pages（Microsoft Research、KAIST）+ 更新 index/log
+
+## [2026-04-08] compile | ConvSearch-R1 + AgentFold + SkillRouter 规范化
+- ConvSearch-R1：重命名 PDF（convsearch-r1.pdf → ConvSearch-R1_2503.21278.pdf），新增 concept pages（检索增强生成、Query 重写）+ entity page（复旦大学），修复悬垂链接 [[SkillBench]]
+- AgentFold：重命名 PDF（agentfold_2510.24699.pdf → AgentFold_2510.24699.pdf），更新 sources 路径，补充通义实验室 entity（加入 SkillRouter 作者信息）
+- SkillRouter：修复悬垂链接 [[SkillBench]] → [[AgentFold]]
+- Index 重写（结构修复），补全所有 concept + entity 条目
