@@ -20,3 +20,4 @@ Master catalog of all wiki pages. Updated on every ingest.
 - [[summaries/acon]] — ACON 论文完整摘要：压缩准则优化、蒸馏 pipeline、26-54% 内存降低
 - [[summaries/convsearch-r1]] — ConvSearch-R1 论文完整摘要：检索信号驱动RL、Rank-Incentive Reward、RIRS
 - [[summaries/agentfold]] — AgentFold 论文完整摘要：核心问题、多尺度状态摘要、两种折叠操作、关键结果
+- [[summaries/skillrouter]] — SkillRouter 论文完整摘要：1.2B 全文检索+重排、80K 技能路由、74.0% Hit@1、5.8× 加速
