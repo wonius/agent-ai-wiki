@@ -1,48 +1,79 @@
 ---
-title: ConvSearch-R1 论文摘要
+title: ConvSearch-R1
 type: summary
 created: 2026-04-07
-updated: 2026-04-07
-sources: ["raw/papers/ConvSearch-R1_2503.21278.pdf", "raw/papers/ConvSearch-R1_深度阅读报告.md"]
-tags: [Conversational Search, Query Reformulation, Reinforcement Learning, Information Retrieval, EMNLP 2025]
+updated: 2026-04-09
+sources: ["raw/papers/ConvSearch-R1_2503.21278.pdf", "raw/papers/ConvSearch-R1_2503.21278_深度阅读报告.md"]
+tags: [Conversational Search, Query Reformulation, Reinforcement Learning, GRPO, Information Retrieval, EMNLP 2025]
 ---
 
-# ConvSearch-R1 论文摘要
+# ConvSearch-R1
+
+**ConvSearch-R1: Enhancing Query Reformulation for Conversational Search with Reasoning via Reinforcement Learning**
+来源：EMNLP 2025 | 作者：复旦大学 + ByteDance
 
 ## 一句话概括
 
-ConvSearch-R1 是首个**完全摆脱外部重写监督**的会话搜索 Query 重写框架，通过**检索信号驱动的强化学习**直接优化重写策略，3B 小模型在 TopiOCQA 上超越 SOTA 超过 10%。
+通过"自蒸馏（SDPWU）+ 检索引导的强化学习（GRPO/RIRS）"两阶段框架，让 3B 小模型学会推理式查询改写，无需外部监督数据即刷新 SOTA。
 
 ## 核心问题
 
-会话搜索中用户 query 通常包含**歧义、省略、指代**（如"它"、"那个"），不能直接用于检索。
+对话搜索中用户 query 依赖上下文（代词、指代、省略），需要改写成 context-independent 形式。现有方法依赖外部强模型蒸馏或人工标注，成本高且泛化差。
 
-现有 CQR 方法的两个关键缺陷：
-1. **过度依赖外部监督**：需要人工标注或 GPT-4 生成重写结果，成本高昂
-2. **与下游检索器对齐不足**：重写模型和检索器各自为战
-
-## 核心方法：ConvSearch-R1
+## 核心方法
 
 ### Stage 1: Self-Driven Policy Warm-Up (SDPWU)
+- 用 few-shot prompt 让 3B 模型自我蒸馏
+- 过滤条件：gold passage 必须 rank=1
+- 产出：格式稳定的 SFT 模型
 
-解决 RL 冷启动：用检索信号本身筛选自生成的高质量数据，无需外部 LLM 蒸馏。
-
-流程：few-shot 生成 → 格式过滤 → 筛选 gold passage 排第1的样本 → SFT
-
-### Stage 2: Retrieval-Guided Reinforcement Learning (RGRL)
-
-**Rank-Incentive Reward Shaping (RIRS)**：设计分段奖励函数解决传统检索指标（MRR@3、NDCG@3）的奖励稀疏问题。排名 1-10 给予高奖励，排名 11-100 给予次级奖励。
-
-采用 **GRPO** 算法，无需 reward model 或 value model。
+### Stage 2: Retrieval-Guided RL (GRPO + RIRS)
+- **Rank-Incentive Reward Shaping (RIRS)**：piecewise 线性奖励
+  - rank 1-10：奖励 1.0-2.0
+  - rank 11-100：奖励 0-1.0
+  - format 不合规：-0.1 惩罚
+- GRPO 优化，无需 reward model
+- 解决直接用 MRR/NDCG 作 reward 导致的 reward sparsity 问题
 
 ## 关键结果
 
-- TopiOCQA：>10% 超越 SOTA
-- 3B 模型（Llama3.2-3B / Qwen2.5-3B）超越依赖外部 LLM 监督的 7B 竞品
-- 无需任何外部重写监督、无需训练检索器
+| 模型 | 数据集 | MRR@3 | NDCG@3 | R@10 |
+|------|--------|-------|--------|------|
+| ConvSearch-R1 (Llama3.2-3B) | TopiOCQA (ANCE) | **50.5** | 50.1 | 72.0 |
+| ConvSearch-R1 (Qwen2.5-3B) | TopiOCQA (ANCE) | **51.4** | 51.3 | 72.0 |
+| ConvSearch-R1 (Llama3.2-3B) | QReCC (ANCE) | 50.2 | 48.1 | 70.6 |
+| SOTA (ADACQR) | TopiOCQA (ANCE) | 38.5 | 37.6 | 61.6 |
+| SOTA (CHIQ-Fusion) | QReCC (ANCE) | 47.2 | 44.2 | 70.7 |
 
-## 相关信息
+- 3B 模型超越所有 7B 竞品
+- 无外部监督数据（No External Distillation, No Human Rewrite）
+- 跨数据集泛化能力强（TREC CAsT 2019/2020/2021 同样 SOTA）
 
-- 论文：https://arxiv.org/abs/2505.15776
-- 作者：Changtai Zhu, Siyin Wang, Ruijun Feng, Kai Song, Xipeng Qiu（复旦大学）
-- 发布：EMNLP 2025 Main Conference
+## Core claims
+
+1. **推理能力可以通过自蒸馏获得**：无需外部强模型蒸馏
+2. **RIRS 解决 reward sparsity**：piecewise 奖励比直接用 MRR 高 3 倍以上
+3. **模型规模越小收益越大**：0.5B 就能超越 SOTA
+
+## Concepts introduced
+
+- [[Rank-Incentive Reward Shaping]] — 分段线性奖励函数
+- [[Self-Driven Policy Warm-Up]] — 自蒸馏 warm-up
+- [[Conversational Query Reformulation]] — 会话查询改写
+
+## 可复现要素
+
+- 基座：Llama3.2-3B / Qwen2.5-3B（开源）
+- SFT：batch=64, seq_len=3072, epoch=2, lr=1e-5
+- RL：batch=128, prompt_len=1536, lr=1e-6, clip=0.2, KL=0.001, rollout=8
+- 训练框架：verl
+
+## 与 ACON / AgentFold 的关联
+
+ConvSearch-R1 关注**检索前的 query 改写**（信息获取优化），ACON/AgentFold 关注**上下文压缩**（信息量管理），两者是正交的优化维度。
+
+## 相关论文
+
+- [[summaries/acon]] — 上下文压缩优化
+- [[summaries/agentfold]] — 主动上下文折叠
+- [[summaries/skillrouter]] — 技能路由
