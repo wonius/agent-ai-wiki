@@ -1,0 +1,66 @@
+{
+  "paper_id": "2510.00615",
+  "paper_slug": "acon",
+  "pdf_path": "/root/.openclaw/workspace-IronMan/wiki/raw/papers/ACON_2510.00615.pdf",
+  "metadata": {
+    "doi": "10.48550/arXiv.2412.08905.",
+    "title": "未找到标题",
+    "received": "29 July 2023",
+    "journal": "Nature",
+    "authors": "未找到作者"
+  },
+  "pdf_text_preview": "ACON: OPTIMIZING CONTEXT COMPRESSION FOR LONG-HORIZON LLM AGENTS MinkiKang1∗ Wei-NingChen2 DonggeHan2 HuseyinA.Inan2 LukasWutschitz2 YanzhiChen2,3 RobertSim2 SaravanRajmohan2 1KAIST 2Microsoft 3UniversityofCambridge ABSTRACT Largelanguagemodels(LLMs)areincreasinglydeployedasagentsindynamic, real-worldenvironments,wheresuccessrequiresbothreasoningandeffectivetool use. Acentralchallengeforagentictasksisthegrowingcontextlength,asagents mustaccumulatelonghistoriesofactionsandobservations. Thisexpansionraises costsandreducesefficiencyinlong-horizontasks,yetpriorworkoncontextcompression has mostly focused on single-step tasks or narrow applications. We introduce Agent Context Optimization (ACON), a unified framework that optimally compresses both environment observations and interaction histories into concise yet informative condensations. ACON leverages compression guideline optimizationinnaturallanguagespace: givenpairedtrajectorieswherefullcontext succeeds but compressed context fails, capable LLMs analyze the causes of failure, and the compression guideline is updated accordingly. Furthermore, we propose distilling the optimized LLM compressor into smaller models to reduce theoverheadoftheadditionalmodule. ExperimentsonAppWorld,OfficeBench, andMulti-objectiveQAshowthatACONreducesmemoryusageby26-54%(peak tokens) while largely preserving task performance, preserves over 95% of accuracywhendistilledintosmallercompressors,andenhancessmallerLMsaslonghorizonagentswithupto46%performanceimprovement. Ourcodeisavailable athttps://github.com/microsoft/acon. 1 INTRODUCTION Largelanguagemodels(LLMs)havebecomethebackboneofAIagentsacrossdiversereal-world tasks, leveraging language knowledge and reasoning to plan, act, and adapt in dynamic environments (Yao et al., 2023). These tasks often unfold over extended horizons: the agent must gather information,invoketools,andreviseplansbasedonfeedback. Insuchsettings,contextisnotauxiliarybutfoundational,astoolAPIsanddataformatslackstandardization(Anthropic,2024a),and evenpersonalizedenvironmentsdifferinfilestructuresoraccountdata.Agentsmustthereforeaccumulateandmaintainrecordsofprioractions,observations,andworldstate.Losingthisinformation, suchasanemailidentifier,fileversion,orAPIformat,canderailtasksuccess. 55 50 45 7 8 9 10 Average peak tokens (×10³) )%( ycarucca egarevA gpt-4.1 gpt-4.1-mini Qwen3-14B (distilled) 45 -26% peak tokens 35 40 -24% peak tokens -31% peak tokens +30% acc +18% acc 30 +26% acc 35 25 7 8 8 9 10 11 Average peak tokens (×10³) Average peak tokens (×10³) No compression Naive LLM Prompting ACON (ours) Figure 1: Accuracy–Peak tokens trade-off on AppWorld (Trivedi et al., 2024). We compare average accuracy versus peak input tokens in history compression. ACON (ours) reduces cost while preserving accuracy for the large model (gpt-4.1) relative to a naive prompting baseline, and even improvesaccuracyonsmallermodels(gpt-4.1-miniandQwen-14B).MoreresultsareinSection4. ∗WorkdoneduringtheinternshipatMicrosoft.Contact:minkikang@kaist.ac.kr 1 5202 tcO 71 ]IA.sc[ 2v51600.0152:viXra Daily S p t la a y rt li s p t l a o y n in S g p a o tify Ever growing context → High memory RQ1: How to optimize the compressor? Apps Spotify Venmo TodoistSimpleNote User f in o r S w im o p rk le o u N t o p te la . n Distraction by irrelevant context RQ2: How to reduce cost of compressor Office Thought 1 Raw History → Can we use small LM instead of LLM? Apps Mail Word Excel Terminal Action 1 Effect of Context Compression Search Personal Observation 1 Context Start playing a Engine Search Files FileSystem Thought 2 Compressor p fo la r y w li o st r k o o n u S t p p o la ti n fy Environment Action 2 (LLM) User in Simple Note. Observation 2 Compressed History Action Observation … 10 steps … Thought N Think Thought N Action N Action N Replace Observation N Observation N Reduce peak tokens → Less memory LLM Agent Memory Essential info for accurate decisions Figure 2: Motivation: Unbounded context in LLM agents. As LLM agents interact with environments,actionsandobservationscontinuouslyaccumulate,leadingtoever-growingcontextsthat incur high memory usage as in the red line on the right plot. This motivates Agent Context Optimization(ACON), whichoptimallycompresseshistoriesandobservationsintoconcisesummaries, reducingpeaktokensandmemoryasinthebluelineontherightplot. Thecentralityofcontext,however,makesitabottleneck.Asinteractionsaccumulate,contextsgrow unboundedasinFigure2, creatingtwomajorchallenges. First, theinferencecostoftransformers scales with the context length, which becomes prohibitive in long-horizon tasks. Second, excessivelylongcontextsdiluterelevantinformation, distractingthemodelwithoutdatedorextraneous details (Shi et al., 2023). These issues make effective context management and compression indispensable. Existingcompressionapproachesonlypartiallyaddressthisneed. Dialogue-oriented systemsrely onsession-levelsummarization ortieredmemories suitableforconversational coherence but inadequate for multi-step carry-over (Packer et al., 2023). Document-centric methods in long-contextQAorin-contextlearning(Lietal.,2023;Jiangetal.,2024)assumesingle-stepreasoningwherecontextcanbediscardedafterproducingananswer. Whileeffectiveintheirdomains, thesestrategiesfallshortforcomplexmulti-steptaskswheresuccessdependsonretainingstructured signalsacrossmanyinteractions. Thechallengebecomesparticularlycriticalinproductivityscenarios(e.g.,emailmanagement,document processing, or workflow automation) where agents must coordinate across heterogeneous tools and maintain precise state information. Unlike simpler agent tasks, these environments demand preservation of diverse signal types: factual history, action–outcome relationships, evolving environment states, success preconditions, and future decision cues. Naive strategies like token truncationorgenericsummarizationeasilylosecriticaldetailsessentialforlong-horizonreasoning. Recentagent-focusedcompressionmethods(Dengetal.,2023;Leeetal.,2025;Smith,2025)either specializenarrowlyorrelyonbrittleheuristics,limitingtheirapplicabilityacrossthefullspectrum ofmulti-stepagenttasks. WeaddressthesechallengeswithAgentContextOptimization(ACON),aunifiedframeworkfor systematic and adaptive context compression. Our study yields three key findings. First, taskand environment-specific guidelines enable consistent context compression across diverse agents withoutsacrificingperformance. Second,optimizedcontextsnotonlyreducecostsbutalsoimprove decision quality, allowing smaller LLMs to act more effectively. Third, high-quality compressors canbedistilledintoevensmallermodels,reducingoverheadandimprovingdeployability. ACON dynamically condenses environment observations and interaction histories into concise, informativerepresentations. Ratherthanhandcraftingprompts,weintroduceaguidelineoptimization pipeline that refines compressor prompts via failure analysis in natural language space (Pryzant etal.,2023;Khattabetal.,2024;Yüksekgönületal.,2025;Hanetal.,2025),ensuringthatcritical environment-specificandtask-relevantinformationisretained. Importantly,ACONisgradient-free, requiringnoparameterupdates,makingitdirectlyusablewithclosed-sourceorproductionmodels. Wefurtherdistilloptimizedcompressorsintosmallermodelsforcost-efficientdeployment. We validate ACON on three multi-step agent benchmarks: AppWorld (Trivedi et al., 2024), OfficeBench (Wang et al., 2024b), and Multi-objective QA (Kwiatkowski et al., 2019; Zhou et al., 2025),eachrequiring15+interactionsteps. Ourempiricalresultsdemonstrateclearadvantagesof ACON: (i) lowers memory usage by 26–54% (peak tokens) while largely maintaining task perfor2 mance; (ii)enableseffectivedistillationofthecontextcompressorintosmallermodels,preserving 95%oftheteacher’saccuracyacrossallbenchmarks,therebyreducingtheoverheadoftheadditional module; (iii) allows small LMs to function more effectively as agents, improving performance by 32%onAppWorld,20%onOfficeBench,and46%onMulti-objectiveQAbymi",
+  "pdf_text_full_length": 138800,
+  "key_data": {
+    "percentages": [
+      "95",
+      "74",
+      "61.5",
+      "54.5",
+      "54",
+      "46",
+      "33.9",
+      "32",
+      "31",
+      "30",
+      "26.8",
+      "26",
+      "25",
+      "24",
+      "20"
+    ],
+    "concentrations": [
+      [
+        "1",
+        "M"
+      ],
+      [
+        "2",
+        "M"
+      ],
+      [
+        "2",
+        "m"
+      ],
+      [
+        "3",
+        "m"
+      ],
+      [
+        "4",
+        "M"
+      ]
+    ],
+    "metrics": {
+      "R²": "0"
+    },
+    "temperatures": [
+      "45",
+      "29",
+      "025",
+      "024",
+      "023",
+      "20"
+    ]
+  }
+}
