@@ -4,7 +4,7 @@ type: summary
 source_url: https://arxiv.org/abs/2505.15776
 source_type: paper
 date: 2025-05-21
-tags: [LLM Agent, 检索, RAG]
+tags: [LLM Agent]
 ---
 
 # ConvSearch-R1: Enhancing Query Reformulation for Conversational Search with Reasoning via Reinforcement Learning

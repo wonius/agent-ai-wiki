@@ -40,3 +40,7 @@ Quick grep: `grep "^## \[" log.md | tail -10`
 ## [2026-04-09] promote | 小模型策略 — 综合 AgentFold/SkillRouter/ConvSearch-R1 三个案例，跨论文主题浮现
 
 ## [2026-04-09] ingest | convsearch-r1
+
+## [2026-04-10] ingest | convsearch-r1
+
+## [2026-04-10] ingest | convsearch-r1
