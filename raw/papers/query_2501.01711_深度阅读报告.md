@@ -1,7 +1,7 @@
-# 深度阅读报告：ACON: Optimizing Context Compression for Long-horizon LLM Agents
+# 深度阅读报告：LLMs & Legal Aid: Understanding Legal Needs Exhibited Through User Queries
 
-**生成时间**: 2026-04-11 11:19:58  
-**源文件**: ACON_2510.00615.pdf
+**生成时间**: 2026-04-11 11:19:51  
+**源文件**: query_2501.01711.pdf
 
 ---
 
@@ -9,24 +9,24 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | ACON: Optimizing Context Compression for Long-horizon LLM Agents |
+| **标题** | LLMs & Legal Aid: Understanding Legal Needs Exhibited Through User Queries |
 | **中文标题** | [待翻译] |
 | **期刊** | arXiv |
-| **DOI** | 10.48550/arXiv.2412.08905. |
-| **作者** | Minki Kang, Wei-Ning Chen, Dongge Han, Huseyin A. Inan, Lukas Wutschitz, Yanzhi Chen, Robert Sim, Saravan Rajmohan |
+| **DOI** | 10.1145/3630106.3659048. |
+| **作者** | Michal Kuk, Jakub Harasta |
 | **通讯作者** | 未找到 |
 | **接收日期** | 未知 |
 | **发表日期** | 未知 |
 
 
 **关键指标:**
-- R²: 0
+- R²: 0.059
 
-**百分比数据:** 95, 74, 61.5, 54.5, 54, 46, 33.9, 32
+**百分比数据:** 76, 72, 71.43, 71, 70.05, 65, 64.93, 61
 
-**浓度数据:** 4M, 3m, 2m, 1M, 2M
+**浓度数据:** 117M, 223.85M, 3m, 4m, 5M
 
-**温度条件:** 45, 29, 025, 024, 023°C
+**温度条件:** 024°C
 
 ---
 
@@ -91,6 +91,6 @@
 
 ---
 
-*报告生成时间：2026-04-11 11:19:58*
+*报告生成时间：2026-04-11 11:19:51*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

@@ -1,0 +1,86 @@
+{
+  "paper_id": "2503.01763",
+  "paper_slug": "tool",
+  "pdf_path": "tool_2503.01763.pdf",
+  "metadata": {
+    "title": "Retrieval Models Aren't Tool-Savvy: Benchmarking Tool Retrieval for Large Language Models",
+    "authors": "Zhengliang Shi, Yuhan Wang, Lingyong Yan, Pengjie Ren, Shuaiqiang Wang, Dawei Yin, Zhaochun Ren",
+    "published": "2025-03-03",
+    "abstract": "Tool learning aims to augment large language models (LLMs) with diverse tools, enabling them to act as agents for solving practical tasks. Due to the limited context length of tool-using LLMs, adopting information retrieval (IR) models to select useful tools from large toolsets is a critical initial step. However, the performance of IR models in tool retrieval tasks remains underexplored and unclear. Most tool-use benchmarks simplify this step by manually pre-annotating a small set of relevant tools for each task, which is far from the real-world scenarios. In this paper, we propose ToolRet, a heterogeneous tool retrieval benchmark comprising 7.6k diverse retrieval tasks, and a corpus of 43k tools, collected from existing datasets. We benchmark six types of models on ToolRet. Surprisingly, even the models with strong performance in conventional IR benchmarks, exhibit poor performance on ToolRet. This low retrieval quality degrades the task pass rate of tool-use LLMs. As a further step, we contribute a large-scale training dataset with over 200k instances, which substantially optimizes the tool retrieval ability of IR models.",
+    "arxiv_id": "2503.01763",
+    "journal": "arXiv"
+  },
+  "pdf_text_preview": "Tool learning aims to augment large language models (LLMs) with diverse tools, enabling them to act as agents for solving practical tasks. Due to the limited context length of tool-using LLMs, adopting information retrieval (IR) models to select useful tools from large toolsets is a critical initial step. However, the performance of IR models in tool retrieval tasks remains underexplored and unclear. Most tool-use benchmarks simplify this step by manually pre-annotating a small set of relevant tools for each task, which is far from the real-world scenarios. In this paper, we propose ToolRet, a heterogeneous tool retrieval benchmark comprising 7.6k diverse retrieval tasks, and a corpus of 43k tools, collected from existing datasets. We benchmark six types of models on ToolRet. Surprisingly, even the models with strong performance in conventional IR benchmarks, exhibit poor performance on ToolRet. This low retrieval quality degrades the task pass rate of tool-use LLMs. As a further step, we contribute a large-scale training dataset with over 200k instances, which substantially optimizes the tool retrieval ability of IR models.\n\n[以下是 PDF 正文提取内容]\nRetrieval Models Aren’t Tool-Savvy: Benchmarking Tool Retrieval for Large Language Models Zhengliang Shi1 Yuhan Wang1 Lingyong Yan2 Pengjie Ren1 Shuaiqiang Wang2 Dawei Yin2 Zhaochun Ren3* 1Shandong University, Qingdao, China 2Baidu Inc., Beijing, China 3Leiden University, Leiden, The Netherlands  Tool-Retrieval-Benchmark shizhl@mail.sdu.edu.cn z.ren@liacs.leidenuniv.nl Abstract Tool learning aims to augment large language models (LLMs) with diverse tools, enabling them to act as agents for solving practical tasks. Due to the limited context length of tool-using LLMs, adopting information retrieval (IR) models to select useful tools from large toolsets is a critical initial step. However, the performance of IR models in tool retrieval tasks remains underexplored and unclear. Most tooluse benchmarks simplify this step by manually pre-annotating a small set of relevant tools for each task, which is far from the real-world scenarios. In this paper, we propose TOOLRET, a heterogeneous tool retrieval benchmark comprising 7.6k diverse retrieval tasks, and a corpus of 43k tools, collected from existing datasets. We benchmark six types of models on TOOLRET. Surprisingly, even the models with strong performance in conventional IR benchmarks, exhibit poor performance on TOOLRET. This low retrieval quality degrades the task pass rate of tool-use LLMs. As a further step, we contribute a large-scale training dataset with over 200k instances, which substantially optimizes the tool retrieval ability of IR models.1 1 Introduction Large language models (LLMs) have demonstrated remarkable progress across various natural language processing (NLP) tasks, such as text summarization (Chang et al., 2023). However, they suffer from inherent inabilities to interact with the physical world and access vast, up-to-date knowledge (Qin et al., 2024). To alleviate these drawbacks, tool learning is proposed to equip LLMs with external tools, augmenting them as agents to manipulate tools for practical task-solving (Qu et al., 2025b; Wang et al., 2024e). In practical applications, retrieving useful tools from toolsets for LLM agents typically serves as *Corresponding author. 1Resource is available on Huggingface and  Website. 49 51 53 55 22 25 28 31 34 Recall@10 of IR models Pass Rate of GPT-3.5-turbo … 64.2 Pass rate with pre-annotated toolset (oracle) e5-base-v2 e5-large-v2 ColBET-v2 bge-base-v1.5 bge-large-v1.5 decrease 10.1 only 27.3 recall@10 Figure 1: Correlation between the tool retrieval performance (e.g., Recall@10) of IR models and the end-toend task pass rate of tool-use agents. the initial step (Wang et al., 2024c; Xu et al., 2024; Song et al., 2023). This step becomes particularly critical in real-world scenarios where the candidate tools are usually large-scale and many of them are similar in functionality (Qu et al., 2024a). However, most existing work (Guo et al., 2024; Qian et al., 2023) simplifies this retrieval process by manually pre-selecting a small set of 10-20 relevant tools for each evaluation task. For example, the ToolACE (Liu et al., 2024a) and ToolBench (Qin et al., 2023) annotate about 10 tools per task. While recent information retrieval (IR) techniques such as semantic matching (Qu et al., 2024a; Xu et al., 2024), can assist with tool retrieval, they are often trained on ad-hoc tool-use datasets, lacking comprehensive evaluation on diverse scenarios, especially for unseen tasks. To further explore the importance of tool retrieval, we conduct a pilot experiment on ToolBench (Qin et al., 2023). As shown in Figure 1, we observe that (i) the agent’s performance substantially drops when replacing the officially annotated toolset with the retrieved tools; and (ii) even strong retrievers like colbertv2 (Santhanam et al., 2021a), struggle to retrieve target tools effectively. These findings highlight the necessity to (i) systematically evaluate IR models on diverse tool retrieval tasks; and (ii) analyze the impact of retrieval on the end-to-end task pass rate. In this work, we introduce TOOLRET, the first arXiv:2503.01763v2 [cs.CL] 26 May 2025\n\nlarge-scale tool retrieval benchmark comprising 7.6k diverse retrieval tasks and a corpus of 43k tools, which comprehensively evaluates IR models across diverse retrieval scenarios. Specifically, we collect query-tool datasets from the following sources: (i) Tool-use agent benchmarks from published research papers in AI conferences, such as ACL and NeurIPS; (ii) Related conference resources such as AppBench in EMNLP and ToolLens in CIKM; and (iii) Other publicly available datasets from the open-source community, e.g., HuggingFace. The collected data is carefully curated to cover a wide range of practical tool requirements, comprising diverse types of tool documentation, domains, and varying query lengths. Then, we standardize the format of all the collected tasks, aligning them with retrieval tasks similar to the format in MTEB, where each retrieval task contains a query and target tools (e.g., labels). To support the instructional retrieval (Weller et al., 2024) setting of our benchmark, we also introduce a target-aware strategy to supplement each query with an instruction using the powerful LLMs (i.e., gpt-4o). We systematically evaluate five types of IR models such as embedding models and LLM re-ranking, under various experimental settings. Our results reveal that even the best model (i.e., NV-embedd-v1) that demonstrates strong performance in conventional IR benchmarks, achieves an nDCG@10 of only 33.83 in our benchmark. This highlights the challenges of the tool retrieval tasks. We identify two key factors contributing to this performance gap: (i) Lower term overlap between queries and target tools in tool retrieval tasks, which demands higher representation abilities for IR models to accurately match query intent with the correct tools; and (ii) Task shift from conventional informationseeking tasks (e.g., document retrieval) to tool retrieval, leading to suboptimal performance of IR models that are not explicitly optimized. To enhance the retrieval performance and enable IR models to augment tool-use agents, we further propose the TOOLRET-train, a large-scale training dataset containing more than 200k retrieval tasks. We extend our data collection process from TOOLRET to include the training set of three mainstream tool-use datasets, including ToolACE (Liu et al., 2024a), APIGen (Liu et al., 2024b) and ToolBench (Qin et al., 2023). To enable the training, we pair each retrieval task with 10 negative tools retrieved by the NV-embed-v1. Finally, each training example contains the query, an generated instruction, the target tools, and the negative tools. Results show that the IR models trained over TOOLRETtrain, exhibit significant improvements in the retrieval process, leading to a higher end-to-end task pass rate when integrated with tool-use LLMs. Our contributions are summarized as follows: (i) We introduce TOOLRET, the first evaluation benchmark for tool retrieval tasks. (ii) We evaluate the tool retrieval performance of various IR models and analyze the impact of retrieval on the end-toend task pass rate of tool-use LLMs; and (iii) We contribute to a large-scale training dataset that enhances the performance of IR models, improving their ability to augment tool-use LLMs effectively. 2 Related work Tool learning with foundation models. Tool learning aims to equip LLMs with tools, such as web API (Song et al., 2023) and python packages (Wang et al., 2024d), expanding their utility (Qin et al., 2023). Existing work teaching LLMs to use tools can be broadly classified into tuning-free (Lu et al., 2023) and tuning-based methods (Gao et al., 2024). The former prepends the description of candidate tools in the LLMs’ context, prompting them to select and invoke tools (Huang et al., 2023). The latter enables LLMs to learn the usage of each tool through training on synthetic data (Liu et al., 2024a; Gao et al., 2024). However, both two paradigms struggle when facing the large-scale toolset in practice (Qu et al., 2024b; Liu et al., 2024b). First, real-world toolsets are typically massive, making it less possible to incorporate all tools within the limited context of LLMs. For example, the RapidAPI platform contains more than 52k tools while the PyPI2 hosts over 600k frequently updated packages. Second, since tools are frequently updated, it is cost-intensive to re-train the LLMs to memorize all tools (Qu et al., 2025a). Although recent studies address this challenge using semantic retrievers (Qin et al., 2023; Wang et al., 2024c), these solutions are typically ad-hoc and lack systematic evaluation across diverse tool retrieval scenarios. To fill this gap, we present the first comprehensive tool retrieval benchmark with systematic analysis. Information retrieval benchmark. Conventional information retrieval (IR) benchmarks are typically designed for information-seeking tasks, such as Nature Question (Kwiat kowski et al., 2019) for question answering and MS-MARCO (Nguyen 2https://pypi.org/\n\net al., 2016) for passage re-ranking. Recent work also explores the IR technique in various downstream tasks, such as table retrieval (Chen et al., 2024b; Zhang and Balog, 2020) and scientific retrieval (Ajith et al., 2024), which substantially augments the downstream models. However, tool retrieval, a crucial step for tool-use agents, remains underexplored. Compared with traditional IR tasks, retrieving useful tools is more challenging since solving a task typically requires the combination of multiple tools (Qu et al., 2024b). Most existing benchmarks simplify this retrieval process by manually annotating a small set of tools that fit the LLMs’ context, which is far from reality with a large toolset. In this work, we evaluate IR models on diverse tool retrieval tasks and contribute over 200k training data to facilitate future research. 3 Benchmark construction 3.1 Data collection To build a comprehensive benchmark for tool retrieval evaluation, we collect data from the following well-known sources: (i) Tool-use LLM benchmarks: A wide range of benchmarks published in leading AI conferences such as ACL and NeurIPS; (ii) Conference Resources: Datasets from resource tracks in IR and NLP conferences (e.g., CIKM and EMNLP); and (iii) Other high-quality dataset: We identify related datasets released on open-source platforms like HuggingFace and their technique reports can be found in public submissions like arXiv. We include them to enrich TOOLRET. Given the rapid development of benchmarks from these sources, we collect datasets released between the August 2023 to December 2024 in this version.3 We download these data from official channels based on their usage requirements and totally collect more than 30 datasets. Since the data sources are diverse and their original formats vary substantially, we perform necessary data cleaning operations such as deduplication and text normalization to ensure consistency and quality. We observe that most of the collected datasets are originally designed to evaluate the tool-use capability of LLMs, where the LLM is required to correctly call a sequence of target tools given an input query. To facilitate retrieval evaluation in TOOLRET, we align the format of all collected tasks with the well-established IR benchmark like BEIR and MTEB. Specifically, each task consists of a query as 3Our team will maintain and update the benchmark. input and target tools as label (a.k.a, ground truth), where a tool is identified by a unique identifier and paired with detailed documentation to describe its functionality. Endpoints of the collected datasets and concrete examples of our formatted dataset are provided in Appendix B. 3.2 Data sampling After collecting the datasets, we observe data size imbalances across different datasets. Besides, some datasets are extremely large with substantial redundant content, making comprehensive model eva",
+  "pdf_text_full_length": 113746,
+  "key_data": {
+    "percentages": [
+      "128.60",
+      "107.38",
+      "94.1",
+      "92.3",
+      "91.03",
+      "90.1",
+      "89.2",
+      "83.98",
+      "83.03",
+      "76.80",
+      "72.52",
+      "70.18",
+      "67.98",
+      "56.05",
+      "53.07"
+    ],
+    "concentrations": [
+      [
+        "33",
+        "M"
+      ],
+      [
+        "123",
+        "M"
+      ],
+      [
+        "34.14",
+        "M"
+      ],
+      [
+        "26",
+        "M"
+      ],
+      [
+        "40.37",
+        "m"
+      ],
+      [
+        "31.01",
+        "m"
+      ],
+      [
+        "32.12",
+        "m"
+      ],
+      [
+        "10",
+        "m"
+      ],
+      [
+        "32.92",
+        "m"
+      ],
+      [
+        "32",
+        "Mm"
+      ]
+    ],
+    "metrics": {},
+    "temperatures": [
+      "44",
+      "42",
+      "41",
+      "32",
+      "024",
+      "023",
+      "020"
+    ]
+  }
+}

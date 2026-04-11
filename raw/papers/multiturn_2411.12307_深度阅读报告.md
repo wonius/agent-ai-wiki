@@ -1,7 +1,7 @@
-# 深度阅读报告：ACON: Optimizing Context Compression for Long-horizon LLM Agents
+# 深度阅读报告：Balancing Accuracy and Efficiency in Multi-Turn Intent Classification for LLM-Powered Dialog Systems in Production
 
-**生成时间**: 2026-04-11 11:19:58  
-**源文件**: ACON_2510.00615.pdf
+**生成时间**: 2026-04-11 11:19:34  
+**源文件**: multiturn_2411.12307.pdf
 
 ---
 
@@ -9,24 +9,21 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | ACON: Optimizing Context Compression for Long-horizon LLM Agents |
+| **标题** | Balancing Accuracy and Efficiency in Multi-Turn Intent Classification for LLM-Powered Dialog Systems in Production |
 | **中文标题** | [待翻译] |
 | **期刊** | arXiv |
-| **DOI** | 10.48550/arXiv.2412.08905. |
-| **作者** | Minki Kang, Wei-Ning Chen, Dongge Han, Huseyin A. Inan, Lukas Wutschitz, Yanzhi Chen, Robert Sim, Saravan Rajmohan |
+| **DOI** | 10.1145/3295750.3298924 |
+| **作者** | Junhua Liu, Yong Keat Tan, Bin Fu, Kwan Hui Lim |
 | **通讯作者** | 未找到 |
 | **接收日期** | 未知 |
 | **发表日期** | 未知 |
 
 
-**关键指标:**
-- R²: 0
+**百分比数据:** 82.93, 81.36, 81.14, 79.24, 78.86, 78.48, 78.10, 78.02
 
-**百分比数据:** 95, 74, 61.5, 54.5, 54, 46, 33.9, 32
+**浓度数据:** 80m, 1145M, 170m, 2.1M, 6.2M, 4.2M
 
-**浓度数据:** 4M, 3m, 2m, 1M, 2M
-
-**温度条件:** 45, 29, 025, 024, 023°C
+**温度条件:** 024, 023, 022°C
 
 ---
 
@@ -91,6 +88,6 @@
 
 ---
 
-*报告生成时间：2026-04-11 11:19:58*
+*报告生成时间：2026-04-11 11:19:34*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

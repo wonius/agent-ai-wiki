@@ -1,7 +1,7 @@
-# 深度阅读报告：ACON: Optimizing Context Compression for Long-horizon LLM Agents
+# 深度阅读报告：Powering Job Search at Scale: LLM-Enhanced Query Understanding in Job Matching Systems
 
-**生成时间**: 2026-04-11 11:19:58  
-**源文件**: ACON_2510.00615.pdf
+**生成时间**: 2026-04-11 11:20:05  
+**源文件**: query_2509.09690.pdf
 
 ---
 
@@ -9,24 +9,21 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | ACON: Optimizing Context Compression for Long-horizon LLM Agents |
+| **标题** | Powering Job Search at Scale: LLM-Enhanced Query Understanding in Job Matching Systems |
 | **中文标题** | [待翻译] |
 | **期刊** | arXiv |
-| **DOI** | 10.48550/arXiv.2412.08905. |
-| **作者** | Minki Kang, Wei-Ning Chen, Dongge Han, Huseyin A. Inan, Lukas Wutschitz, Yanzhi Chen, Robert Sim, Saravan Rajmohan |
+| **DOI** | 10.1145/3746252.3760913 |
+| **作者** | Ping Liu, Jianqiang Shen, Qianqi Shen, Chunnan Yao, Kevin Kao, Dan Xu, Rajat Arora, Baofen Zheng, Caleb Johnson, Liangjie Hong, Jingwei Wu, Wenjing Zhang |
 | **通讯作者** | 未找到 |
 | **接收日期** | 未知 |
 | **发表日期** | 未知 |
 
 
-**关键指标:**
-- R²: 0
+**百分比数据:** 75, 59, 33
 
-**百分比数据:** 95, 74, 61.5, 54.5, 54, 46, 33.9, 32
+**浓度数据:** 4M, 400m, 4m, 4.1M, 600m
 
-**浓度数据:** 4M, 3m, 2m, 1M, 2M
-
-**温度条件:** 45, 29, 025, 024, 023°C
+**温度条件:** 025, 022°C
 
 ---
 
@@ -91,6 +88,6 @@
 
 ---
 
-*报告生成时间：2026-04-11 11:19:58*
+*报告生成时间：2026-04-11 11:20:05*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

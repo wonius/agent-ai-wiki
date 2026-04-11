@@ -1,6 +1,6 @@
-# 深度阅读报告：SkillRouter: Skill Routing for LLM Agents at Scale
+# 深度阅读报告：Preprint. Under review. SkillRouter: Skill Routing for LLM Agents at Scale YanZhao Zheng ZhenTao Zhang Chao Ma YuanQiang Yu JiHuai Zhu Wu Yong Tianze Xu Baohua Dong∗Hangcheng Zhu Ruohui Huang Gang Yu Alibaba Group, Hangzhou, China zhengyanzhao.zyz, zhangzhentao.zzt, mc524716, yuyuanqiang.yyq, zhujihuai.zjh, wy517954, xutianze.xtz, baohua.dbh, linran.lr09, wentong, ruohai@alibaba-inc.com Abstract Reusable skills let LLM agents package task-specific procedures, tool affordances, and execution guidance into modular building blocks. As skill ecosystems grow to tens of thousands of entries, exposing every skill at inference time becomes infeasible. This creates a skill-routing problem: given a user task, the system must identify relevant skills before downstream planning or execution. Existing agent stacks often rely on progressive disclosure, exposing only skill names and descriptions while hiding the full implementation body. We examine this design choice on a SkillsBenchderived benchmark with approximately 80K candidate skills, targeting the practically important setting of large skill registries with heavy overlap. Across representative sparse, dense, and reranking baselines on this setting, hiding the skill body causes a 31–44 percentage point drop in routing accuracy, showing that full skill text is a critical routing signal in this setting rather than a minor metadata refinement. Motivated by this finding, we present SKILLROUTER1, a compact 1.2B full-text retrieve-andrerank pipeline. SKILLROUTER achieves 74.0% Hit@1 on our benchmark— the strongest average top-1 routing performance among the baselines we evaluate—while using 13× fewer parameters and running 5.8× faster than the strongest base pipeline. The ranking gains further generalize to a supplementary benchmark independently constructed from three skill sources. In a complementary end-to-end study across four coding agents, routing gains transfer to improved task success, with larger gains for more capable agents. 1 Introduction Skills have emerged as a practical abstraction for extending LLM agents with reusable procedures, tool knowledge, and execution guidance. Recent coding-agent products such as Claude Code, Codex, and OpenClaw expose reusable skills as a first-class capability (Anthropic, 2025; OpenAI, 2025; OpenClaw, 2026b). These systems reflect the growing use of skill registries in real deployments. Presenting every skill to the agent is infeasible, so real systems need skill routing: retrieving the right skill from a large pool given a user task. This setting has an important asymmetry: the routing component can inspect the full skill text, while the agent that eventually consumes the skill usually sees only its name and description. In deployed agent stacks, this upstream routing decision is a high-leverage bottleneck: once the wrong skill shortlist is surfaced, downstream planning and execution ∗Corresponding author. 1https://github.com/zhengyanzhao1997/SkillRouter 1 arXiv:2603.22455v4 [cs.LG] 1 Apr 2026
 
-**生成时间**: 2026-04-10 22:44:42  
+**生成时间**: 2026-04-11 11:21:12  
 **源文件**: SkillRouter_2603.22455.pdf
 
 ---
@@ -9,13 +9,13 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | SkillRouter: Skill Routing for LLM Agents at Scale |
+| **标题** | Preprint. Under review. SkillRouter: Skill Routing for LLM Agents at Scale YanZhao Zheng ZhenTao Zhang Chao Ma YuanQiang Yu JiHuai Zhu Wu Yong Tianze Xu Baohua Dong∗Hangcheng Zhu Ruohui Huang Gang Yu Alibaba Group, Hangzhou, China zhengyanzhao.zyz, zhangzhentao.zzt, mc524716, yuyuanqiang.yyq, zhujihuai.zjh, wy517954, xutianze.xtz, baohua.dbh, linran.lr09, wentong, ruohai@alibaba-inc.com Abstract Reusable skills let LLM agents package task-specific procedures, tool affordances, and execution guidance into modular building blocks. As skill ecosystems grow to tens of thousands of entries, exposing every skill at inference time becomes infeasible. This creates a skill-routing problem: given a user task, the system must identify relevant skills before downstream planning or execution. Existing agent stacks often rely on progressive disclosure, exposing only skill names and descriptions while hiding the full implementation body. We examine this design choice on a SkillsBenchderived benchmark with approximately 80K candidate skills, targeting the practically important setting of large skill registries with heavy overlap. Across representative sparse, dense, and reranking baselines on this setting, hiding the skill body causes a 31–44 percentage point drop in routing accuracy, showing that full skill text is a critical routing signal in this setting rather than a minor metadata refinement. Motivated by this finding, we present SKILLROUTER1, a compact 1.2B full-text retrieve-andrerank pipeline. SKILLROUTER achieves 74.0% Hit@1 on our benchmark— the strongest average top-1 routing performance among the baselines we evaluate—while using 13× fewer parameters and running 5.8× faster than the strongest base pipeline. The ranking gains further generalize to a supplementary benchmark independently constructed from three skill sources. In a complementary end-to-end study across four coding agents, routing gains transfer to improved task success, with larger gains for more capable agents. 1 Introduction Skills have emerged as a practical abstraction for extending LLM agents with reusable procedures, tool knowledge, and execution guidance. Recent coding-agent products such as Claude Code, Codex, and OpenClaw expose reusable skills as a first-class capability (Anthropic, 2025; OpenAI, 2025; OpenClaw, 2026b). These systems reflect the growing use of skill registries in real deployments. Presenting every skill to the agent is infeasible, so real systems need skill routing: retrieving the right skill from a large pool given a user task. This setting has an important asymmetry: the routing component can inspect the full skill text, while the agent that eventually consumes the skill usually sees only its name and description. In deployed agent stacks, this upstream routing decision is a high-leverage bottleneck: once the wrong skill shortlist is surfaced, downstream planning and execution ∗Corresponding author. 1https://github.com/zhengyanzhao1997/SkillRouter 1 arXiv:2603.22455v4 [cs.LG] 1 Apr 2026 |
 | **中文标题** | [待翻译] |
-| **期刊** | arXiv |
-| **DOI** | 未知 |
-| **作者** | YanZhao Zheng, ZhenTao Zhang, Chao Ma, YuanQiang Yu, JiHuai Zhu, Yong Wu, Tianze Xu, Baohua Dong, Hangcheng Zhu, Ruohui Huang, Gang Yu |
+| **期刊** | Science |
+| **DOI** |  |
+| **作者** | 未找到作者 |
 | **通讯作者** | 未找到 |
-| **接收日期** | 未知 |
+| **接收日期** | 1 Apr 2026 |
 | **发表日期** | 未知 |
 
 
@@ -24,7 +24,7 @@
 
 **百分比数据:** 100, 99.6, 98.1, 98, 97.3, 96.5, 96, 94
 
-**浓度数据:** 148m, 3m, 5.4m, 495.8m, 50M, 5.2M
+**浓度数据:** 5m, 5.2M, 4m, 5.4m, 495.8m, 335M
 
 **温度条件:** 50, 44, 20°C
 
@@ -91,6 +91,6 @@
 
 ---
 
-*报告生成时间：2026-04-10 22:44:42*
+*报告生成时间：2026-04-11 11:21:12*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

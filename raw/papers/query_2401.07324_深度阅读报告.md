@@ -1,7 +1,7 @@
-# 深度阅读报告：ACON: Optimizing Context Compression for Long-horizon LLM Agents
+# 深度阅读报告：Small LLMs Are Weak Tool Learners: A Multi-LLM Agent
 
-**生成时间**: 2026-04-11 11:19:58  
-**源文件**: ACON_2510.00615.pdf
+**生成时间**: 2026-04-11 11:20:33  
+**源文件**: query_2401.07324.pdf
 
 ---
 
@@ -9,24 +9,21 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | ACON: Optimizing Context Compression for Long-horizon LLM Agents |
+| **标题** | Small LLMs Are Weak Tool Learners: A Multi-LLM Agent |
 | **中文标题** | [待翻译] |
 | **期刊** | arXiv |
-| **DOI** | 10.48550/arXiv.2412.08905. |
-| **作者** | Minki Kang, Wei-Ning Chen, Dongge Han, Huseyin A. Inan, Lukas Wutschitz, Yanzhi Chen, Robert Sim, Saravan Rajmohan |
+| **DOI** | 未知 |
+| **作者** | Weizhou Shen, Chenliang Li, Hongzhan Chen, Ming Yan, Xiaojun Quan, Hehong Chen, Ji Zhang, Fei Huang |
 | **通讯作者** | 未找到 |
 | **接收日期** | 未知 |
 | **发表日期** | 未知 |
 
 
-**关键指标:**
-- R²: 0
+**百分比数据:** 100, 75, 50, 25, 19.2
 
-**百分比数据:** 95, 74, 61.5, 54.5, 54, 46, 33.9, 32
+**浓度数据:** 29M, 44.88M, 123M, 35M, 1M, 11M
 
-**浓度数据:** 4M, 3m, 2m, 1M, 2M
-
-**温度条件:** 45, 29, 025, 024, 023°C
+**温度条件:** 024, 023°C
 
 ---
 
@@ -91,6 +88,6 @@
 
 ---
 
-*报告生成时间：2026-04-11 11:19:58*
+*报告生成时间：2026-04-11 11:20:33*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

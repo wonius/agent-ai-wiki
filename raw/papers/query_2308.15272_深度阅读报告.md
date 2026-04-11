@@ -1,7 +1,7 @@
-# 深度阅读报告：ACON: Optimizing Context Compression for Long-horizon LLM Agents
+# 深度阅读报告：AutoDroid: LLM-powered Task Automation in Android
 
-**生成时间**: 2026-04-11 11:19:58  
-**源文件**: ACON_2510.00615.pdf
+**生成时间**: 2026-04-11 11:20:07  
+**源文件**: query_2308.15272.pdf
 
 ---
 
@@ -9,24 +9,21 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | ACON: Optimizing Context Compression for Long-horizon LLM Agents |
+| **标题** | AutoDroid: LLM-powered Task Automation in Android |
 | **中文标题** | [待翻译] |
-| **期刊** | arXiv |
-| **DOI** | 10.48550/arXiv.2412.08905. |
-| **作者** | Minki Kang, Wei-Ning Chen, Dongge Han, Huseyin A. Inan, Lukas Wutschitz, Yanzhi Chen, Robert Sim, Saravan Rajmohan |
+| **期刊** | Nature |
+| **DOI** | 10.1145/3636534.3649379 |
+| **作者** | 未找到作者 |
 | **通讯作者** | 未找到 |
-| **接收日期** | 未知 |
+| **接收日期** | 9 Mar 2024 |
 | **发表日期** | 未知 |
 
 
-**关键指标:**
-- R²: 0
+**百分比数据:** 93.7, 92.9, 91.2, 90.9, 90, 89.9, 87.1, 82.5
 
-**百分比数据:** 95, 74, 61.5, 54.5, 54, 46, 33.9, 32
+**浓度数据:** 4M, 2.1M, 10m, 339.0m, 3.3M, 4m
 
-**浓度数据:** 4M, 3m, 2m, 1M, 2M
-
-**温度条件:** 45, 29, 025, 024, 023°C
+**温度条件:** 024, 023, 021, 020°C
 
 ---
 
@@ -91,6 +88,6 @@
 
 ---
 
-*报告生成时间：2026-04-11 11:19:58*
+*报告生成时间：2026-04-11 11:20:07*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

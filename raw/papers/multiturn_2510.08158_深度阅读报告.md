@@ -1,7 +1,7 @@
-# 深度阅读报告：ACON: Optimizing Context Compression for Long-horizon LLM Agents
+# 深度阅读报告：Beyond Over-Refusal: Scenario-Based Diagnostics and Post-Hoc Mitigation for Exaggerated Refusals in LLMs
 
-**生成时间**: 2026-04-11 11:19:58  
-**源文件**: ACON_2510.00615.pdf
+**生成时间**: 2026-04-11 11:19:18  
+**源文件**: multiturn_2510.08158.pdf
 
 ---
 
@@ -9,24 +9,21 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | ACON: Optimizing Context Compression for Long-horizon LLM Agents |
+| **标题** | Beyond Over-Refusal: Scenario-Based Diagnostics and Post-Hoc Mitigation for Exaggerated Refusals in LLMs |
 | **中文标题** | [待翻译] |
 | **期刊** | arXiv |
-| **DOI** | 10.48550/arXiv.2412.08905. |
-| **作者** | Minki Kang, Wei-Ning Chen, Dongge Han, Huseyin A. Inan, Lukas Wutschitz, Yanzhi Chen, Robert Sim, Saravan Rajmohan |
+| **DOI** | 未知 |
+| **作者** | Shuzhou Yuan, Ercong Nie, Yinuo Sun, Chenxuan Zhao, William LaCroix, Michael Färber |
 | **通讯作者** | 未找到 |
 | **接收日期** | 未知 |
 | **发表日期** | 未知 |
 
 
-**关键指标:**
-- R²: 0
+**百分比数据:** 100, 90.85, 83.75, 81.3, 70, 60, 57.2, 56
 
-**百分比数据:** 95, 74, 61.5, 54.5, 54, 46, 33.9, 32
+**浓度数据:** 30m, 4.2M, 3m, 3.2M
 
-**浓度数据:** 4M, 3m, 2m, 1M, 2M
-
-**温度条件:** 45, 29, 025, 024, 023°C
+**温度条件:** 025, 024°C
 
 ---
 
@@ -91,6 +88,6 @@
 
 ---
 
-*报告生成时间：2026-04-11 11:19:58*
+*报告生成时间：2026-04-11 11:19:18*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*
