@@ -1,6 +1,6 @@
-# 深度阅读报告：CorefInst: Leveraging LLMs for Multilingual Coreference Resolution Tu˘gba Pamay Arslan⋄and Emircan Erol⋄and Gül¸sen Eryi˘git⋄ ⋄˙ITÜ NLP Research Group Department of Artificial Intelligence and Data Engineering ˙Istanbul Technical University [pamay, erole20, gulsen.cebiroglu]@itu.edu.tr Abstract Coreference Resolution (CR) is a crucial yet challenging task in natural language understanding, often constrained by task-specific architectures and encoder-based language models that demand extensive training and lack adaptability. This study introduces the first multilingual CR methodology which leverages decoder-only LLMs to handle both overt and zero mentions. The article explores how to model the CR task for LLMs via five different instruction sets using a controlled inference method. The approach is evaluated across three LLMs; Llama 3.1, Gemma 2, and Mistral 0.3. The results indicate that LLMs, when instruction-tuned with a suitable instruction set, can surpass state-of-theart task-specific architectures. Specifically, our best model, a fully fine-tuned Llama 3.1 for multilingual CR, outperforms the leading multilingual CR model (i.e., Corpipe 24 single stage variant) by 2 pp on average across all languages in the CorefUD v1.2 dataset collection. 1 Introduction Coreference Resolution (CR) is a semantic-level task in natural language processing (NLP) that involves detecting and clustering mentions referring to the same entity within a text. An end-to-end CR system consists of two phases: mention detection and coreference linking. In mention detection, all possible referential mentions are extracted from the text. In the next step, mentions referring to the same entity are collected under the same cluster, by resolving which mentions are coreferential. This task is crucial for various higherlevel NLP applications, including machine translation (Stojanovski and Fraser, 2018), text summarization (Liu et al., 2021), and question answering systems (Bhattacharjee et al., 2020), as it helps in understanding the coherence and context of the text. Large Language Models (LLMs) are traditionally classified into three categories: encoder-only models (e.g., BERT), encoder-decoder models (e.g., T5), and decoder-only models (e.g. GPT, Llama). Initial task-specific neural CR models (Lee et al., 2017; Straka, 2023) incorporate an encoder-only LLM at the bottom layer to generate word embeddings, followed by a specialized neural architecture where the LLM layer is also fine-tuned during the training process, illustrated in Figure 1. However, task-specific models require specialized architectures, vast amount of training data, and an extensive fine-tuning/training process from scratch, leading to limited generalizability and flexibility across new datasets, languages, tasks, and domains. Furthermore, due to their niche nature, these models cannot exploit decoder-based LLMs directly, which have been rapidly developing. On the other hand, instruction tuning has emerged as a powerful paradigm, enabling decoder-only LLMs to adapt to diverse tasks through carefully crafted prompts or instructions, thereby addressing these limitations. It is important to note that recently, LLMs are often used interchangeably with decoder-only models in the literature, particularly due to the popularity of autoregressive models like GPT. From this point onward in the article, we will refer to decoder-only LLMs simply as LLMs. Despite notable progress in CR, the technologies developed to tackle challenges such as handling zero mentions and generalizing across various languages are still evolving (Novák et al., 2024; Pamay Arslan and Eryi˘git, 2025). Recent CR studies (Chen et al., 2021; Straka, 2023; Pamay Arslan and Eryi˘git, 2025) address zero mentions and their coreferential relations alongside overt mentions. Zero mentions are not explicitly defined in an original sentence, and result from dropped-pronouns in pro-dropped languages (e.g., Chinese, Hungarians, Turkish). Figure 2 presents a sample Czech sentence containing zero mentions along with its arXiv:2509.17505v1 [cs.CL] 22 Sep 2025
+# 深度阅读报告：CorefInst: Leveraging LLMs for Multilingual Coreference Resolution
 
-**生成时间**: 2026-04-11 11:20:13  
+**生成时间**: 2026-04-11 11:21:35  
 **源文件**: anaphora_2509.17505.pdf
 
 ---
@@ -9,88 +9,144 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | CorefInst: Leveraging LLMs for Multilingual Coreference Resolution Tu˘gba Pamay Arslan⋄and Emircan Erol⋄and Gül¸sen Eryi˘git⋄ ⋄˙ITÜ NLP Research Group Department of Artificial Intelligence and Data Engineering ˙Istanbul Technical University [pamay, erole20, gulsen.cebiroglu]@itu.edu.tr Abstract Coreference Resolution (CR) is a crucial yet challenging task in natural language understanding, often constrained by task-specific architectures and encoder-based language models that demand extensive training and lack adaptability. This study introduces the first multilingual CR methodology which leverages decoder-only LLMs to handle both overt and zero mentions. The article explores how to model the CR task for LLMs via five different instruction sets using a controlled inference method. The approach is evaluated across three LLMs; Llama 3.1, Gemma 2, and Mistral 0.3. The results indicate that LLMs, when instruction-tuned with a suitable instruction set, can surpass state-of-theart task-specific architectures. Specifically, our best model, a fully fine-tuned Llama 3.1 for multilingual CR, outperforms the leading multilingual CR model (i.e., Corpipe 24 single stage variant) by 2 pp on average across all languages in the CorefUD v1.2 dataset collection. 1 Introduction Coreference Resolution (CR) is a semantic-level task in natural language processing (NLP) that involves detecting and clustering mentions referring to the same entity within a text. An end-to-end CR system consists of two phases: mention detection and coreference linking. In mention detection, all possible referential mentions are extracted from the text. In the next step, mentions referring to the same entity are collected under the same cluster, by resolving which mentions are coreferential. This task is crucial for various higherlevel NLP applications, including machine translation (Stojanovski and Fraser, 2018), text summarization (Liu et al., 2021), and question answering systems (Bhattacharjee et al., 2020), as it helps in understanding the coherence and context of the text. Large Language Models (LLMs) are traditionally classified into three categories: encoder-only models (e.g., BERT), encoder-decoder models (e.g., T5), and decoder-only models (e.g. GPT, Llama). Initial task-specific neural CR models (Lee et al., 2017; Straka, 2023) incorporate an encoder-only LLM at the bottom layer to generate word embeddings, followed by a specialized neural architecture where the LLM layer is also fine-tuned during the training process, illustrated in Figure 1. However, task-specific models require specialized architectures, vast amount of training data, and an extensive fine-tuning/training process from scratch, leading to limited generalizability and flexibility across new datasets, languages, tasks, and domains. Furthermore, due to their niche nature, these models cannot exploit decoder-based LLMs directly, which have been rapidly developing. On the other hand, instruction tuning has emerged as a powerful paradigm, enabling decoder-only LLMs to adapt to diverse tasks through carefully crafted prompts or instructions, thereby addressing these limitations. It is important to note that recently, LLMs are often used interchangeably with decoder-only models in the literature, particularly due to the popularity of autoregressive models like GPT. From this point onward in the article, we will refer to decoder-only LLMs simply as LLMs. Despite notable progress in CR, the technologies developed to tackle challenges such as handling zero mentions and generalizing across various languages are still evolving (Novák et al., 2024; Pamay Arslan and Eryi˘git, 2025). Recent CR studies (Chen et al., 2021; Straka, 2023; Pamay Arslan and Eryi˘git, 2025) address zero mentions and their coreferential relations alongside overt mentions. Zero mentions are not explicitly defined in an original sentence, and result from dropped-pronouns in pro-dropped languages (e.g., Chinese, Hungarians, Turkish). Figure 2 presents a sample Czech sentence containing zero mentions along with its arXiv:2509.17505v1 [cs.CL] 22 Sep 2025 |
-| **中文标题** | [待翻译] |
-| **期刊** | Nature |
-| **DOI** |  |
-| **作者** | 未找到作者 |
-| **通讯作者** | 未找到 |
-| **接收日期** | 22 Sep 2025 |
-| **发表日期** | 未知 |
-
-
-**关键指标:**
-- R²: 16
+| **标题** | CorefInst: Leveraging LLMs for Multilingual Coreference Resolution |
+| **中文标题** | CorefInst：利用LLM进行多语言共指消解 |
+| **期刊** | arXiv (cs.CL) |
+| **DOI** | arXiv:2509.17505 |
+| **作者** | Tuğba Pamay Arslan, Emircan Erol, Gülşen Eryiğit (伊斯坦布尔技术大学) |
+| **通讯作者** | (未明确) |
+| **接收日期** | 2025-09-22 |
+| **发表日期** | 2025-09-22 |
 
 **百分比数据:** 76.15, 73.82, 72.46, 1.4, 1.3, 1.1, 0.9
 
-**浓度数据:** 20m, 3m, 2m, 10m, 13M, 1M
+**浓度数据:** 20m, 3m, 2m, 10m, 13M, 1M, 2
 
-**温度条件:** 023°C
+**温度条件:** (无)
 
 ---
 
 ## 第二部分：核心理解
 
-*本部分由AI进行深度分析*
-
 ### 1. 这篇论文到底在做什么？
-[AI分析中...]
+
+本文提出首个利用解码器-only LLM进行多语言共指消解的方法——CorefInst。
+
+**核心贡献：**
+- 首次使用解码器-only LLM处理多语言共指消解
+- 同时处理显性提及（overt mentions）和零提及（zero mentions）
+- 探索五种不同指令集
+- 评估三种LLM：Llama 3.1, Gemma 2, Mistral 0.3
 
 ### 2. 为什么要做这个？
-[AI分析中...]
+
+**核心问题：**
+- 传统共指消解系统依赖特定任务架构
+- 需要大量训练数据和专门的微调过程
+- 缺乏跨语言和跨任务的可扩展性
+- 零提及处理（pro-drop语言）仍是挑战
+
+**研究动机：**
+- 指令调优使解码器-only LLM能适应不同任务
+- 需要探索LLM在多语言共指上的潜力
+- 零提及在pro-drop语言（如中文、土耳其语、匈牙利语）中常见
 
 ### 3. 是怎么做到的？
-[AI分析中...]
+
+**方法框架：**
+
+1. **指令工程**：探索五种指令集
+   - 包含任务定义、输入/输出格式、约束
+   - 特别关注零提及的处理
+
+2. **受控推理方法**：
+   - 输入：指令 + 带掩码的输入句子 + 输出句子
+   - 学习生成预期输出，识别回指关系
+
+3. **数据处理**：
+   - 使用CorefUD v1.2数据集（15种语言，21个数据集）
+   - 包含pro-drop语言（土耳其语、加泰罗尼亚语）
+
+4. **评估设置**：
+   - 端到端评估（预测提及上的共指链接）
+   - 与CorPipe 24单阶段变体对比
 
 ### 4. 做得怎么样？
-[AI分析中...]
+
+**主要结果：**
+- 最佳模型：全微调的Llama 3.1
+- 性能：平均超越CorPipe 24达2个百分点
+- 零提及处理表现优异
+
+**详细数据：**
+- 最佳准确率：76.15%
+- 在pro-drop语言上表现突出
+
+**关键发现：**
+- 指令调优的LLM可超越传统任务特定架构
+- 零提及处理是LLM的优势之一
+- 指令集选择对性能有显著影响
 
 ### 5. 意味着什么？
-[AI分析中...]
+
+**科学意义：**
+- 首个多语言共指消解的LLM方法
+- 证明解码器-only LLM在此任务上的潜力
+- 为零提及处理提供新思路
+
+**对NLP研究的启示：**
+- LLM可替代传统任务特定模型
+- 指令调优是灵活的知识迁移方法
+- 多语言处理的新范式
 
 ---
 
 ## 第三部分：批判性分析
 
-*本部分由AI进行深度分析*
-
 ### 1. 优点/亮点
-[AI分析中...]
+
+- **创新性**：首个多语言共指消解LLM方法
+- **全面评估**：15种语言、21个数据集
+- **零提及处理**：专门处理pro-drop语言
+- **开源代码**：便于复现
 
 ### 2. 潜在问题/局限
-[AI分析中...]
+
+- **模型规模**：需要较大计算资源
+- **评估指标**：可能需要更多指标
+- **语言覆盖**：仍有语言未覆盖
 
 ### 3. 未解决的关键问题
-[AI分析中...]
+
+- 更小模型的效果
+- 与最新LLM的兼容性
+- 跨领域泛化能力
 
 ---
 
 ## 第四部分：用户研究的关联
 
-*本部分由用户补充*
-
 ### 1. 相关度评估
-- [ ] 高：直接相关，可借鉴
+- [x] 高：直接相关，可借鉴
 - [ ] 中：间接相关，有参考价值
 - [ ] 低：领域较远，仅作了解
 
-**说明**：[由用户填写]
+**说明**：本文直接研究多语言Coreference Resolution，与主题直接相关。
 
 ### 2. 可借鉴之处
-- 技术方法：[由用户填写]
-- 分析思路：[由用户填写]
-- 实验设计：[由用户填写]
+- 技术方法：指令调优 + 受控推理
+- 分析思路：多语言vs单语言对比
+- 实验设计：零提及的特殊处理
 
 ### 3. 可能的应用场景
-- 研究方向：[由用户填写]
-- 实际应用：[由用户填写]
+- 研究方向：多语言NLP任务
+- 实际应用：跨语言信息提取
 
 ### 4. 补充笔记
 [由用户填写]
 
 ---
 
-*报告生成时间：2026-04-11 11:20:13*
+*报告生成时间：2026-04-11 11:21:35*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

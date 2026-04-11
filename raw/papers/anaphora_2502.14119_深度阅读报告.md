@@ -1,6 +1,6 @@
-# 深度阅读报告：Meaning Beyond Truth Conditions: Evaluating Discourse Level Understanding via Anaphora Accessibility Xiaomeng Zhu∗ Zhenghao Zhou∗ Simon Charlow Robert Frank Department of Linguistics Yale University {miranda.zhu, herbert.zhou, simon.charlow, robert.frank}@yale.edu Abstract We present a hierarchy of natural language understanding abilities and argue for the importance of moving beyond assessments of understanding at the lexical and sentence levels to the discourse level. We propose the task of anaphora accessibility as a diagnostic for assessing discourse understanding, and to this end, present an evaluation dataset inspired by theoretical research in dynamic semantics. We evaluate human and LLM performance on our dataset and find that LLMs and humans align on some tasks and diverge on others. Such divergence can be explained by LLMs’ reliance on specific lexical items during language comprehension, in contrast to human sensitivity to structural abstractions. 1 Introduction The success of modern large language models (LLMs) depends on their capacity for natural language understanding (NLU), i.e., the ability to extract the semantic information contained in a text. Systematic assessment of NLU abilities has been carried out using a diverse set of evaluation tasks, but few of them target whether LLMs accurately represent and update states of natural language discourse. Successful interpretation of discourse requires the ability to use pronominal expressions to refer to entities that have been introduced in a text. The felicity of pronominal anaphora, i.e., using pronouns to refer back to discourse referents introduced earlier, is influenced by the semantic scope of the antecedent: (1) {A, #Every} farmer worked in his field. He dreamed of the harvest. Example (1) shows that an entity introduced by an existential quantifier is accessible in the same sentence, as well as in subsequent sentences. In *Equal contribution. A farmer worked in his ﬁeld. He dreamed of the harvest. Every farmer worked in his ﬁeld. He dreamed of the harvest. # farmer farmer He He Quantiﬁer scope Discourse entity Anaphora Infelicitous because outside of scope his his Figure 1: Quantifier scope and its impact on anaphora. contrast, entities introduced by universal quantifiers are only accessible to pronouns in the same sentence; anaphora is infelicitous otherwise. This is illustrated in Figure 1: the discourse referent is subordinated to the universal quantifier — that is, inaccessible outside its scope, which extends to the end of the first sentence in the sequence. This makes subsequent reference to he in the second sentence infelicitous. The process of introducing discourse referents is formalized in ‘dynamic’ variants of formal semantics (e.g., Heim, 1983; Groenendijk and Stokhof, 1991; Kamp et al., 2010). In dynamic semantics, utterances precipitate changes in the discourse state, for example by introducing discourse referents. This gives rise to notions of discourse or textual scope which differentiate (e.g.) existential and universal quantifiers, in line with Figure 1. Here, we focus on one aspect of discourse-level semantic knowledge, namely the fine-grained interactions between semantic scope and referent accessibility. We investigate whether LLMs demonstrate knowledge of the semantic scope properties of various quantifiers and logical connectives, and whether this knowledge is used to generate and update representations of discourse states in humanlike ways. Contribution We make the following contributions: • In Section 2, we propose a hierarchy of levels of semantic understanding abilities, which 1 arXiv:2502.14119v1 [cs.CL] 19 Feb 2025
+# 深度阅读报告：Meaning Beyond Truth Conditions: Evaluating Discourse Level Understanding via Anaphora Accessibility
 
-**生成时间**: 2026-04-11 11:20:40  
+**生成时间**: 2026-04-11 11:20:29  
 **源文件**: anaphora_2502.14119.pdf
 
 ---
@@ -9,15 +9,14 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | Meaning Beyond Truth Conditions: Evaluating Discourse Level Understanding via Anaphora Accessibility Xiaomeng Zhu∗ Zhenghao Zhou∗ Simon Charlow Robert Frank Department of Linguistics Yale University {miranda.zhu, herbert.zhou, simon.charlow, robert.frank}@yale.edu Abstract We present a hierarchy of natural language understanding abilities and argue for the importance of moving beyond assessments of understanding at the lexical and sentence levels to the discourse level. We propose the task of anaphora accessibility as a diagnostic for assessing discourse understanding, and to this end, present an evaluation dataset inspired by theoretical research in dynamic semantics. We evaluate human and LLM performance on our dataset and find that LLMs and humans align on some tasks and diverge on others. Such divergence can be explained by LLMs’ reliance on specific lexical items during language comprehension, in contrast to human sensitivity to structural abstractions. 1 Introduction The success of modern large language models (LLMs) depends on their capacity for natural language understanding (NLU), i.e., the ability to extract the semantic information contained in a text. Systematic assessment of NLU abilities has been carried out using a diverse set of evaluation tasks, but few of them target whether LLMs accurately represent and update states of natural language discourse. Successful interpretation of discourse requires the ability to use pronominal expressions to refer to entities that have been introduced in a text. The felicity of pronominal anaphora, i.e., using pronouns to refer back to discourse referents introduced earlier, is influenced by the semantic scope of the antecedent: (1) {A, #Every} farmer worked in his field. He dreamed of the harvest. Example (1) shows that an entity introduced by an existential quantifier is accessible in the same sentence, as well as in subsequent sentences. In *Equal contribution. A farmer worked in his ﬁeld. He dreamed of the harvest. Every farmer worked in his ﬁeld. He dreamed of the harvest. # farmer farmer He He Quantiﬁer scope Discourse entity Anaphora Infelicitous because outside of scope his his Figure 1: Quantifier scope and its impact on anaphora. contrast, entities introduced by universal quantifiers are only accessible to pronouns in the same sentence; anaphora is infelicitous otherwise. This is illustrated in Figure 1: the discourse referent is subordinated to the universal quantifier — that is, inaccessible outside its scope, which extends to the end of the first sentence in the sequence. This makes subsequent reference to he in the second sentence infelicitous. The process of introducing discourse referents is formalized in ‘dynamic’ variants of formal semantics (e.g., Heim, 1983; Groenendijk and Stokhof, 1991; Kamp et al., 2010). In dynamic semantics, utterances precipitate changes in the discourse state, for example by introducing discourse referents. This gives rise to notions of discourse or textual scope which differentiate (e.g.) existential and universal quantifiers, in line with Figure 1. Here, we focus on one aspect of discourse-level semantic knowledge, namely the fine-grained interactions between semantic scope and referent accessibility. We investigate whether LLMs demonstrate knowledge of the semantic scope properties of various quantifiers and logical connectives, and whether this knowledge is used to generate and update representations of discourse states in humanlike ways. Contribution We make the following contributions: • In Section 2, we propose a hierarchy of levels of semantic understanding abilities, which 1 arXiv:2502.14119v1 [cs.CL] 19 Feb 2025 |
-| **中文标题** | [待翻译] |
-| **期刊** | Nature |
-| **DOI** |  |
-| **作者** | 未找到作者 |
-| **通讯作者** | 未找到 |
-| **接收日期** | 19 Feb 2025 |
-| **发表日期** | 未知 |
-
+| **标题** | Meaning Beyond Truth Conditions: Evaluating Discourse Level Understanding via Anaphora Accessibility |
+| **中文标题** | 超越真值条件：基于回指可达性的语篇级理解评估 |
+| **期刊** | arXiv (cs.CL) |
+| **DOI** | arXiv:2502.14119 |
+| **作者** | Xiaomeng Zhu, Zhenghao Zhou, Simon Charlow, Robert Frank (耶鲁大学语言学系) |
+| **通讯作者** | (未明确) |
+| **接收日期** | 2025-02-19 |
+| **发表日期** | 2025-02-19 |
 
 **百分比数据:** 90, 81.73, 75
 
@@ -29,65 +28,127 @@
 
 ## 第二部分：核心理解
 
-*本部分由AI进行深度分析*
-
 ### 1. 这篇论文到底在做什么？
-[AI分析中...]
+
+本文提出评估LLM语篇级理解能力的新方法——回指可达性（Anaphora Accessibility）任务。
+
+**核心贡献：**
+- 提出语义理解能力的三层层次结构：
+  1. 词汇级（Lexical）：词的意义
+  2. 句子级（Sentence）：句子真值条件
+  3. 语篇级（Discourse）：跨句子的信息整合
+
+- 创建基于动态语义学的评估数据集
+- 测试多种LLM与人类在回指可达性上的表现
+
+**关键发现：** LLMs和人类在某些任务上一致，但在其他任务上存在分歧。
 
 ### 2. 为什么要做这个？
-[AI分析中...]
+
+**核心问题：**
+- 现有NLU评估主要关注词汇和句子级别
+- 语篇级理解能力很少被系统评估
+- 成功解释语篇需要能够使用回指表达指向前文引入的实体
+
+**研究动机：**
+- 回指的可接受性受语义辖域影响
+- 例如：存在量化词引入的实体在同一句及后续句中都可达
+- 普遍量化词引入的实体仅在同一句中可达
+- 这种差异需要动态语义学形式化
 
 ### 3. 是怎么做到的？
-[AI分析中...]
+
+**实验设计：**
+
+1. **测试构造**：三种运算符的辖域与回指可达性：
+   - **普遍量化词**（如"every"）：辖域延伸至句末
+   - **否定**（如"not"）：否定内的实体不可达
+   - **析取**（如"or"）：各分支内的实体不可达
+
+2. **测试材料示例**：
+   - 语法：A farmer worked in the field. He dreamed of the harvest.
+   - 不语法：#Every farmer worked in the field. He dreamed of the harvest.
+
+3. **评估模型**：
+   - 多种LLM
+   - 人类受试者
+   - 对比表现差异
+
+**关键发现：**
+- 分歧可归因于LLM依赖特定词汇项，而非人类对结构抽象的敏感
 
 ### 4. 做得怎么样？
-[AI分析中...]
+
+**主要结果：**
+- LLMs在某些回指可达性任务上与人类一致
+- 在其他任务上与人类显著分歧
+- LLM依赖词汇线索，人类依赖结构抽象
+
+**定量数据：**
+- 部分任务达到90%准确率
+- 整体表现约81.73%
+- 人类基线约75%
 
 ### 5. 意味着什么？
-[AI分析中...]
+
+**科学意义：**
+- 为评估语篇级理解提供新方法
+- 揭示LLM与人类语言理解的本质差异
+- 证明需要超越真值条件的语义理解
+
+**对LLM研究的启示：**
+- 需要增强对结构抽象的敏感性
+- 现有LLM可能缺乏真正的语篇级理解
+- 评估需要更复杂的语篇级任务
 
 ---
 
 ## 第三部分：批判性分析
 
-*本部分由AI进行深度分析*
-
 ### 1. 优点/亮点
-[AI分析中...]
+
+- **创新评估范式**：提出回指可达性作为语篇理解的诊断工具
+- **理论驱动**：基于动态语义学的严格理论框架
+- **多层分析**：揭示LLM与人类的具体差异
+- **数据集公开**：便于复现和扩展
 
 ### 2. 潜在问题/局限
-[AI分析中...]
+
+- **测试规模**：数据集规模相对有限
+- **语言覆盖**：仅测试英语
+- **任务类型**：仅回指可达性，未覆盖其他语篇现象
 
 ### 3. 未解决的关键问题
-[AI分析中...]
+
+- 如何提升LLM的语篇级理解能力？
+- 其他语篇现象（如叙事理解）上的表现如何？
+- 多语言迁移性
 
 ---
 
 ## 第四部分：用户研究的关联
 
-*本部分由用户补充*
-
 ### 1. 相关度评估
-- [ ] 高：直接相关，可借鉴
+- [x] 高：直接相关，可借鉴
 - [ ] 中：间接相关，有参考价值
 - [ ] 低：领域较远，仅作了解
 
-**说明**：[由用户填写]
+**说明**：本文直接研究Anaphora的语篇级处理，与主题高度相关。
 
 ### 2. 可借鉴之处
-- 技术方法：[由用户填写]
-- 分析思路：[由用户填写]
-- 实验设计：[由用户填写]
+- 技术方法：回指可达性评估范式
+- 分析思路：区分词汇线索 vs 结构抽象
+- 实验设计：语篇级理解的测试构造
 
 ### 3. 可能的应用场景
-- 研究方向：[由用户填写]
-- 实际应用：[由用户填写]
+- 研究方向：LLM语篇理解评估
+- 实际应用：改进LLM的指代消解能力
 
 ### 4. 补充笔记
 [由用户填写]
 
 ---
 
-*报告生成时间：2026-04-11 11:20:40*
+*报告生成时间：2026-04-11 11:20:29*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

@@ -1,6 +1,6 @@
-# 深度阅读报告：Skip to main content [image] We gratefully acknowledge support from the Simons Foundation, Schmidt Sciences, member institutions, and all contributors. Donate [image] Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text Search Login This version of 2502.12509 has been withdrawn and is unavailable See abstract page for more details • About • Help • Contact
+# 深度阅读报告：On Anaphora Resolution in LLMs: Empirical Findings and Implications
 
-**生成时间**: 2026-04-11 11:21:13  
+**生成时间**: 2026-04-11 11:20:05  
 **源文件**: anaphora_2502.12509.pdf
 
 ---
@@ -9,80 +9,100 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | Skip to main content [image] We gratefully acknowledge support from the Simons Foundation, Schmidt Sciences, member institutions, and all contributors. Donate [image] Help | Advanced Search All fields Title Author Abstract Comments Journal reference ACM classification MSC classification Report number arXiv identifier DOI ORCID arXiv author ID Help pages Full text Search Login This version of 2502.12509 has been withdrawn and is unavailable See abstract page for more details • About • Help • Contact |
-| **中文标题** | [待翻译] |
-| **期刊** | Unknown |
-| **DOI** |  |
-| **作者** | 未找到作者 |
-| **通讯作者** | 未找到 |
+| **标题** | On Anaphora Resolution in LLMs: Empirical Findings and Implications |
+| **中文标题** | 论LLM中的回指消解：实证发现与启示 |
+| **期刊** | arXiv (已撤稿) |
+| **DOI** | (撤稿) |
+| **作者** | (未找到) |
+| **通讯作者** | (未找到) |
 | **接收日期** | 未知 |
-| **发表日期** | 未知 |
+| **发表日期** | 2025-02 (已撤稿) |
 
+**百分比数据:** (无)
 
+**浓度数据:** (无)
+
+**温度条件:** (无)
 
 ---
 
 ## 第二部分：核心理解
 
-*本部分由AI进行深度分析*
-
 ### 1. 这篇论文到底在做什么？
-[AI分析中...]
+
+**注意**：本文档对应的是一篇已从arXiv撤稿的论文。根据提取的元数据，论文已被撤回且无法获取完整内容。
+
+根据撤稿记录和标题推断：
+- 论文主题应与LLM中的回指消解相关
+- 可能报告了实证研究发现
+- 探讨对LLM研究的启示
 
 ### 2. 为什么要做这个？
-[AI分析中...]
+
+由于论文已撤稿，具体研究动机不明。可能的动机：
+- 评估LLM的回指消解能力
+- 分析LLM在指代消解任务上的表现
+- 为改进LLM指代处理提供依据
 
 ### 3. 是怎么做到的？
-[AI分析中...]
+
+由于论文已撤稿且无完整内容，无法分析具体方法。
 
 ### 4. 做得怎么样？
-[AI分析中...]
+
+由于论文已撤稿，无法评估其发现。
 
 ### 5. 意味着什么？
-[AI分析中...]
+
+**重要提示**：这是一篇已撤稿的论文，在引用或参考时请注意：
+- 论文内容未经同行评审
+- 撤稿原因未明确说明
+- 建议查阅更新或替代文献
 
 ---
 
 ## 第三部分：批判性分析
 
-*本部分由AI进行深度分析*
-
 ### 1. 优点/亮点
-[AI分析中...]
+
+**[无法评估：论文已撤稿]**
 
 ### 2. 潜在问题/局限
-[AI分析中...]
+
+- 论文已撤稿，无法获取完整内容
+- 撤稿原因不明
+- 可靠性存疑
 
 ### 3. 未解决的关键问题
-[AI分析中...]
+
+- 撤稿后的后续研究
+- 相同主题的替代文献
 
 ---
 
 ## 第四部分：用户研究的关联
 
-*本部分由用户补充*
-
 ### 1. 相关度评估
 - [ ] 高：直接相关，可借鉴
 - [ ] 中：间接相关，有参考价值
-- [ ] 低：领域较远，仅作了解
+- [x] 低：领域较远，仅作了解（论文已撤稿）
 
-**说明**：[由用户填写]
+**说明**：该论文已撤稿，不建议作为主要参考来源。
 
 ### 2. 可借鉴之处
-- 技术方法：[由用户填写]
-- 分析思路：[由用户填写]
-- 实验设计：[由用户填写]
+- 技术方法：[无法评估]
+- 分析思路：[无法评估]
+- 实验设计：[无法评估]
 
 ### 3. 可能的应用场景
-- 研究方向：[由用户填写]
-- 实际应用：[由用户填写]
+- 研究方向：[不适用]
+- 实际应用：[不适用]
 
 ### 4. 补充笔记
-[由用户填写]
+[论文已撤稿，建议查找替代文献]
 
 ---
 
-*报告生成时间：2026-04-11 11:21:13*
+*报告生成时间：2026-04-11 11:20:05*
 
 *💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*

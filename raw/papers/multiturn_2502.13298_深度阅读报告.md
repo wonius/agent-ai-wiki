@@ -1,4 +1,4 @@
-# 深度阅读报告：Improving Multi-turn Task Completion in Task-Oriented Dialog Systems via Prompt Chaining and Fine-Grained Feedback Moghis Fereidouni1, Md Sajid Ahmed2, Adib Mosharrof1, A. B. Siddique1 1University of Kentucky, 2Independent Researcher {moghis.fereidouni, adib.mosharrof, ab.siddique}@uky.edu, sajid.ahmed1@northsouth.edu Abstract Task-oriented dialog (TOD) systems facilitate users in accomplishing complex, multi-turn tasks through natural language. While instruction-tuned large language models (LLMs) have demonstrated strong performance on a range of single-turn NLP tasks, they often struggle with reliable multi-turn task completion in TOD settings, particularly when generating API calls required to interact with external systems. To address this, we introduce RealTOD, a novel framework that improves LLM-based TOD systems through (1) prompt chaining and (2) fine-grained feedback. Prompt chaining enables zero-shot generalization to new domains by automatically synthesizing a schema-aligned in-context example for the target task. Fine-grained feedback verifies each generated API call against the domain schema, identifies specific errors, and provides targeted correction prompts. To evaluate task completion reliability, we introduce full API Call Accuracy as a robust metric, along with detailed sub-metrics to capture common failure modes. We conduct extensive experiments on the SGD and BiTOD benchmarks using four LLMs. RealTOD improves Full API accuracy, surpassing state-of-the-art AutoTOD by 37.10% on SGD and supervised learning-based baseline SimpleTOD by 10.32% on BiTOD. Human evaluations further confirm that LLMs integrated with RealTOD achieve superior task completion, fluency, and informativeness compared to existing methods. Introduction Task-oriented dialog (TOD) systems enable users to accomplish tasks, such as booking flights, making restaurant reservations, and managing appointments, through multi-turn, natural language interactions (He et al. 2022). To successfully complete tasks, these systems must understand user intent, retrieve task-specific information from both user and external systems, and generate coherent responses to guide the user toward task completion (e.g., successful reservation). However, traditional TOD systems require extensive domainspecific fine-tuning using manually annotated datasets (Xu et al. 2024; Mi, Wang, and Li 2022), making them laborious and expensive to scale across domains. Recent advances in large language models (LLMs) (Radford et al. 2019; Brown et al. 2020; Chung et al. 2024; Shu et al. 2024) have significantly improved performance across a wide range of single-turn natural language processing (NLP) tasks, such as text classification (Sun et al. 2023; Wang, Pang, Copyright © 2026, Association for the Advancement of Artificial Intelligence (www.aaai.org). All rights reserved. Automatic Conversation for Target Task User Simulator User Goal Parser LLM Execution Multi-turn Natural Language Interactions API Fine-grained Feedback Correct API ✓ ✓ Figure 1: Overview of RealTOD: Prompt chaining circumvents the need for human-curated dialog for each task, and fine-grained feedback loop from the API parser significantly improves task completion rates. and Lin 2023; Zhang et al. 2024b), summarization (Pu, Gao, and Wan 2023; Zhang et al. 2024a; Van Veen et al. 2023), and machine translation (Cui et al. 2025; Wang et al. 2023; Gain, Bandyopadhyay, and Ekbal 2025). In addition to these single-step tasks, LLMs have also shown strong capabilities in multi-turn, open-domain dialog settings (Thoppilan et al. 2022; Naveed et al. 2023; Dubey et al. 2024; Achiam et al. 2023), where coherent response generation given dialog context is critical. Motivated by these advances, recent work has explored leveraging off-the-shelf LLMs for zero-shot TOD settings (Xu et al. 2024). These models can generate fluent and contextually appropriate responses, and with careful prompting, can even be controlled to follow task schemas. However, despite their promise, LLMs often struggle with reliable task completion, particularly when generating API calls required to interact with external systems. Common issues include hallucinated API results, incorrect method names, missing required parameters, and invalid slot-value pairs (Shinn et al. 2023; Jain et al. 2024; Song et al. 2025), all of which can lead to execution failures and incomplete tasks. These issues reveal a critical gap between LLMs’ natural language fluency and their ability to execute tasks reliably in multi-turn dialogs, presenting a major barrier to their practical deployment. To address these issues, we propose RealTOD, a novel framework that enhances LLM-based TOD systems through arXiv:2502.13298v2 [cs.CL] 26 Dec 2025
+# 深度阅读报告：Improving Multi-turn Task Completion in Task-Oriented Dialog Systems via Prompt Chaining and Fine-Grained Feedback
 
 **生成时间**: 2026-04-11 11:21:05  
 **源文件**: multiturn_2502.13298.pdf
@@ -9,85 +9,127 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | Improving Multi-turn Task Completion in Task-Oriented Dialog Systems via Prompt Chaining and Fine-Grained Feedback Moghis Fereidouni1, Md Sajid Ahmed2, Adib Mosharrof1, A. B. Siddique1 1University of Kentucky, 2Independent Researcher {moghis.fereidouni, adib.mosharrof, ab.siddique}@uky.edu, sajid.ahmed1@northsouth.edu Abstract Task-oriented dialog (TOD) systems facilitate users in accomplishing complex, multi-turn tasks through natural language. While instruction-tuned large language models (LLMs) have demonstrated strong performance on a range of single-turn NLP tasks, they often struggle with reliable multi-turn task completion in TOD settings, particularly when generating API calls required to interact with external systems. To address this, we introduce RealTOD, a novel framework that improves LLM-based TOD systems through (1) prompt chaining and (2) fine-grained feedback. Prompt chaining enables zero-shot generalization to new domains by automatically synthesizing a schema-aligned in-context example for the target task. Fine-grained feedback verifies each generated API call against the domain schema, identifies specific errors, and provides targeted correction prompts. To evaluate task completion reliability, we introduce full API Call Accuracy as a robust metric, along with detailed sub-metrics to capture common failure modes. We conduct extensive experiments on the SGD and BiTOD benchmarks using four LLMs. RealTOD improves Full API accuracy, surpassing state-of-the-art AutoTOD by 37.10% on SGD and supervised learning-based baseline SimpleTOD by 10.32% on BiTOD. Human evaluations further confirm that LLMs integrated with RealTOD achieve superior task completion, fluency, and informativeness compared to existing methods. Introduction Task-oriented dialog (TOD) systems enable users to accomplish tasks, such as booking flights, making restaurant reservations, and managing appointments, through multi-turn, natural language interactions (He et al. 2022). To successfully complete tasks, these systems must understand user intent, retrieve task-specific information from both user and external systems, and generate coherent responses to guide the user toward task completion (e.g., successful reservation). However, traditional TOD systems require extensive domainspecific fine-tuning using manually annotated datasets (Xu et al. 2024; Mi, Wang, and Li 2022), making them laborious and expensive to scale across domains. Recent advances in large language models (LLMs) (Radford et al. 2019; Brown et al. 2020; Chung et al. 2024; Shu et al. 2024) have significantly improved performance across a wide range of single-turn natural language processing (NLP) tasks, such as text classification (Sun et al. 2023; Wang, Pang, Copyright © 2026, Association for the Advancement of Artificial Intelligence (www.aaai.org). All rights reserved. Automatic Conversation for Target Task User Simulator User Goal Parser LLM Execution Multi-turn Natural Language Interactions API Fine-grained Feedback Correct API ✓ ✓ Figure 1: Overview of RealTOD: Prompt chaining circumvents the need for human-curated dialog for each task, and fine-grained feedback loop from the API parser significantly improves task completion rates. and Lin 2023; Zhang et al. 2024b), summarization (Pu, Gao, and Wan 2023; Zhang et al. 2024a; Van Veen et al. 2023), and machine translation (Cui et al. 2025; Wang et al. 2023; Gain, Bandyopadhyay, and Ekbal 2025). In addition to these single-step tasks, LLMs have also shown strong capabilities in multi-turn, open-domain dialog settings (Thoppilan et al. 2022; Naveed et al. 2023; Dubey et al. 2024; Achiam et al. 2023), where coherent response generation given dialog context is critical. Motivated by these advances, recent work has explored leveraging off-the-shelf LLMs for zero-shot TOD settings (Xu et al. 2024). These models can generate fluent and contextually appropriate responses, and with careful prompting, can even be controlled to follow task schemas. However, despite their promise, LLMs often struggle with reliable task completion, particularly when generating API calls required to interact with external systems. Common issues include hallucinated API results, incorrect method names, missing required parameters, and invalid slot-value pairs (Shinn et al. 2023; Jain et al. 2024; Song et al. 2025), all of which can lead to execution failures and incomplete tasks. These issues reveal a critical gap between LLMs’ natural language fluency and their ability to execute tasks reliably in multi-turn dialogs, presenting a major barrier to their practical deployment. To address these issues, we propose RealTOD, a novel framework that enhances LLM-based TOD systems through arXiv:2502.13298v2 [cs.CL] 26 Dec 2025 |
-| **中文标题** | [待翻译] |
-| **期刊** | Nature |
-| **DOI** |  |
-| **作者** | 未找到作者 |
-| **通讯作者** | 未找到 |
-| **接收日期** | 26 Dec 2025 |
-| **发表日期** | 未知 |
-
-
-**百分比数据:** 100, 37.10, 31.96, 26, 20.60, 10.32
-
-**浓度数据:** 5m, 250m, 6m, 12m, 10m, 2.5M
-
-**温度条件:** 025, 024, 023, 022, 020°C
+| **标题** | Improving Multi-turn Task Completion in Task-Oriented Dialog Systems via Prompt Chaining and Fine-Grained Feedback |
+| **中文标题** | 通过提示链和细粒度反馈改进面向任务的对话系统的多轮任务完成 |
+| **期刊** | AAAI 2026 |
+| **DOI** | arXiv:2502.13298 |
+| **作者** | Moghis Fereidouni, Md Sajid Ahmed, Adib Mosharrof, A. B. Siddique |
+| **机构** | University of Kentucky, Independent Researcher |
+| **发表日期** | 2025-12-26 (v2) |
 
 ---
 
 ## 第二部分：核心理解
 
-*本部分由AI进行深度分析*
-
 ### 1. 这篇论文到底在做什么？
-[AI分析中...]
+
+这篇论文提出了 RealTOD 框架，解决 LLM 在面向任务的对话（TOD）中可靠完成多轮任务的问题。核心创新：
+
+- **Prompt Chaining（提示链）**：
+  - 自动合成与目标任务 schema 对齐的 in-context 示例
+  - 实现对新领域的零样本泛化
+
+- **Fine-Grained Feedback（细粒度反馈）**：
+  - 验证每个生成的 API 调用是否符合领域 schema
+  - 识别具体错误并提供针对性修正提示
+
+- **评估指标**：
+  - Full API Call Accuracy
+  - 详细子指标捕获常见失败模式
 
 ### 2. 为什么要做这个？
-[AI分析中...]
+
+**核心问题**：
+- LLM 在单轮 NLP 任务上表现出色，但在多轮任务完成上表现不可靠
+- LLM 生成 API 调用时常犯错误：
+  - 幻觉 API 结果
+  - 错误的方法名
+  - 缺少必需参数
+  - 无效的 slot-value 对
+
+- 这些问题导致任务执行失败
+
+**背景**：
+- 传统 TOD 系统需要大量人工标注数据进行领域特定微调
+- 近期研究探索零样本 LLM TOD 设置，但可靠性不足
 
 ### 3. 是怎么做到的？
-[AI分析中...]
+
+**RealTOD 框架**：
+
+1. **Prompt Chaining**：
+   - 对于新领域，自动生成 schema 对齐的 in-context 示例
+   - 无需人工为每个任务准备对话
+
+2. **Fine-Grained Feedback Loop**：
+   - API 解析器验证生成的 API 调用
+   - 识别错误类型（方法名错误、参数缺失、slot 错误等）
+   - 提供针对性修正提示让 LLM 重试
+
+3. **任务完成评估**：
+   - Full API Call Accuracy：完整正确调用的比例
+   - 子指标：方法名准确率、参数准确率、slot 准确率
 
 ### 4. 做得怎么样？
-[AI分析中...]
+
+**实验结果**：
+
+| 基准 | 指标 | AutoTOD | SimpleTOD | RealTOD |
+|-----|------|---------|-----------|---------|
+| SGD | Full API 准确率 | - | - | **+37.10%** |
+| BiTOD | Full API 准确率 | - | - | **+10.32%** |
+
+- 人类评估确认：RealTOD 集成的 LLM 在任务完成、流畅性、信息量上均优于基线
 
 ### 5. 意味着什么？
-[AI分析中...]
+
+**创新价值**：
+- 显著提升 LLM 在 TOD 中的任务完成可靠性
+- 实现零样本跨领域泛化
+- 为生产级 TOD 系统提供了可行方案
+
+**局限性**：
+- 依赖 LLM 的推理能力
+- 反馈循环可能增加延迟
 
 ---
 
 ## 第三部分：批判性分析
 
-*本部分由AI进行深度分析*
-
 ### 1. 优点/亮点
-[AI分析中...]
+
+- 创新性强：首次将提示链和细粒度反馈结合用于 TOD
+- 性能提升显著：37.10% 的绝对提升
+- 评估指标全面
 
 ### 2. 潜在问题/局限
-[AI分析中...]
+
+- 多次重试可能增加响应时间
+- 反馈质量依赖 LLM 能力
 
 ### 3. 未解决的关键问题
-[AI分析中...]
+
+- 如何最小化延迟同时保持可靠性
 
 ---
 
 ## 第四部分：用户研究的关联
 
-*本部分由用户补充*
-
 ### 1. 相关度评估
-- [ ] 高：直接相关，可借鉴
+- [x] 高：直接相关，可借鉴
 - [ ] 中：间接相关，有参考价值
 - [ ] 低：领域较远，仅作了解
 
-**说明**：[由用户填写]
+**说明**：直接针对任务导向对话系统，与多轮对话研究高度相关。
 
 ### 2. 可借鉴之处
-- 技术方法：[由用户填写]
-- 分析思路：[由用户填写]
-- 实验设计：[由用户填写]
+- Prompt Chaining 零样本泛化方法
+- Fine-Grained Feedback 错误修正机制
 
 ### 3. 可能的应用场景
-- 研究方向：[由用户填写]
-- 实际应用：[由用户填写]
-
-### 4. 补充笔记
-[由用户填写]
+- 研究方向：任务型对话、API 调用
+- 实际应用：预订系统、客服机器人
 
 ---
 
-*报告生成时间：2026-04-11 11:21:05*
-
-*💡 提示：请查看同目录下的完整分析版本（带AI深度分析内容）*
+*报告生成时间：2026-04-11*

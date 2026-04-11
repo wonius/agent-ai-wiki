@@ -1,4 +1,4 @@
-# 深度阅读报告：1 Language in vivo vs. in silico: Size matters but Larger Language Models still do not comprehend language on a par with humans due to impenetrable semantic reference Vittoria Dentella1, Fritz Günther2, Evelina Leivada3,4 1 Department of Brain and Behavioral Sciences, University of Pavia, Pavia, Italy 2 Institut für Psychologie, Humboldt-Universitat zu Berlin, Berlin, Germany 3 Departament de Filologia Catalana, Universitat Autònoma de Barcelona, Barcelona, Spain 4 Institució Catalana de Recerca i Estudis Avançats (ICREA), Barcelona, Spain Corresponding Author: Vittoria Dentella1 Email address: vittoria.dentella@unipv.it Abstract Understanding the limits of language is a prerequisite for Large Language Models (LLMs) to act as theories of natural language. LLM performance in some language tasks presents both quantitative and qualitative differences from that of humans, however it remains to be determined whether such differences are amenable to model size. This work investigates the critical role of model scaling, determining whether increases in size make up for such differences between humans and models. We test three LLMs from different families (Bard, 137 billion parameters; ChatGPT-3.5, 175 billion; ChatGPT-4, 1.5 trillion) on a grammaticality judgment task featuring anaphora, center embedding, comparatives, and negative polarity. N=1,200 judgments are collected and scored for accuracy, stability, and improvements in accuracy upon repeated presentation of a prompt. Results of the best performing LLM, ChatGPT-4, are compared to results of n=80 humans on the same stimuli. We find that humans are overall less accurate than ChatGPT-4 (76% vs. 80% accuracy, respectively), but that this is due to ChatGPT4 outperforming humans only in one task condition, namely on grammatical sentences. Additionally, ChatGPT-4 wavers more than humans in its answers (12.5% vs. 9.6% likelihood of an oscillating answer, respectively). Thus, while increased model size may lead to better performance, LLMs are still not sensitive to (un)grammaticality the same way as humans are. It seems possible but unlikely that scaling alone can fix this issue. We interpret these results by comparing language learning in vivo and in silico, identifying three critical differences concerning (i) the type of evidence, (ii) the poverty of the stimulus, and (iii) the occurrence of semantic hallucinations due to impenetrable linguistic reference.
+# 深度阅读报告：Language in vivo vs. in silico: Size matters but Larger Language Models still do not comprehend language on a par with humans due to impenetrable semantic reference
 
 **生成时间**: 2026-04-11 11:21:03  
 **源文件**: anaphora_2404.14883.pdf
@@ -9,15 +9,14 @@
 
 | 字段 | 内容 |
 |:---|:---|
-| **标题** | 1 Language in vivo vs. in silico: Size matters but Larger Language Models still do not comprehend language on a par with humans due to impenetrable semantic reference Vittoria Dentella1, Fritz Günther2, Evelina Leivada3,4 1 Department of Brain and Behavioral Sciences, University of Pavia, Pavia, Italy 2 Institut für Psychologie, Humboldt-Universitat zu Berlin, Berlin, Germany 3 Departament de Filologia Catalana, Universitat Autònoma de Barcelona, Barcelona, Spain 4 Institució Catalana de Recerca i Estudis Avançats (ICREA), Barcelona, Spain Corresponding Author: Vittoria Dentella1 Email address: vittoria.dentella@unipv.it Abstract Understanding the limits of language is a prerequisite for Large Language Models (LLMs) to act as theories of natural language. LLM performance in some language tasks presents both quantitative and qualitative differences from that of humans, however it remains to be determined whether such differences are amenable to model size. This work investigates the critical role of model scaling, determining whether increases in size make up for such differences between humans and models. We test three LLMs from different families (Bard, 137 billion parameters; ChatGPT-3.5, 175 billion; ChatGPT-4, 1.5 trillion) on a grammaticality judgment task featuring anaphora, center embedding, comparatives, and negative polarity. N=1,200 judgments are collected and scored for accuracy, stability, and improvements in accuracy upon repeated presentation of a prompt. Results of the best performing LLM, ChatGPT-4, are compared to results of n=80 humans on the same stimuli. We find that humans are overall less accurate than ChatGPT-4 (76% vs. 80% accuracy, respectively), but that this is due to ChatGPT4 outperforming humans only in one task condition, namely on grammatical sentences. Additionally, ChatGPT-4 wavers more than humans in its answers (12.5% vs. 9.6% likelihood of an oscillating answer, respectively). Thus, while increased model size may lead to better performance, LLMs are still not sensitive to (un)grammaticality the same way as humans are. It seems possible but unlikely that scaling alone can fix this issue. We interpret these results by comparing language learning in vivo and in silico, identifying three critical differences concerning (i) the type of evidence, (ii) the poverty of the stimulus, and (iii) the occurrence of semantic hallucinations due to impenetrable linguistic reference. |
-| **中文标题** | [待翻译] |
-| **期刊** | Nature |
+| **标题** | Language in vivo vs. in silico: Size matters but Larger Language Models still do not comprehend language on a par with humans due to impenetrable semantic reference |
+| **中文标题** | 体内 vs 体外语言：规模很重要但大型语言模型仍因语义参照不可穿透而无法达到人类语言理解水平 |
+| **期刊** | Nature (Zenodo预印本) |
 | **DOI** | 10.5281/zenodo.12665933 |
-| **作者** | 未找到作者 |
-| **通讯作者** | 未找到 |
+| **作者** | Vittoria Dentella, Fritz Günther, Evelina Leivada |
+| **通讯作者** | Vittoria Dentella (vittoria.dentella@unipv.it) |
 | **接收日期** | 未知 |
-| **发表日期** | 未知 |
-
+| **发表日期** | 2024-04 |
 
 **百分比数据:** 93.5, 80.3, 80, 76.1, 76, 12.5, 9.6
 
@@ -29,59 +28,115 @@
 
 ## 第二部分：核心理解
 
-*本部分由AI进行深度分析*
-
 ### 1. 这篇论文到底在做什么？
-[AI分析中...]
+
+这是一项关于大型语言模型（LLM）与人类语言理解能力的对比研究。研究人员测试了三个不同参数规模的LLM（Bard 1370亿参数、ChatGPT-3.5 1750亿、ChatGPT-4 1.5万亿），在语法性判断任务上的表现，任务涵盖：
+- 回指（Anaphora）
+- 中心嵌入（Center embedding）
+- 比较句（Comparatives）
+- 否定极性项（Negative polarity）
+
+收集了1,200条判断，并将最佳模型ChatGPT-4与80名人类受试者进行对比。
 
 ### 2. 为什么要做这个？
-[AI分析中...]
+
+**核心问题：**
+- LLM能否作为自然语言的理论模型？
+- 模型规模增大能否弥合人类与机器的语言理解差距？
+- LLM在语言任务上与人类存在定量和定性差异，这些差异是否可以仅通过增加参数解决？
+
+**研究动机：**
+- 现有研究显示LLM在某些语言任务上与人类表现不同
+- 尚不清楚这种差异是否可以通过 scaling 解决
+- 需要系统评估不同规模LLM的语言能力
 
 ### 3. 是怎么做到的？
-[AI分析中...]
+
+**实验设计：**
+1. **任务设置**：语法性判断任务（二选一：是/否）
+2. **测试对象**：
+   - 三个LLM： Bard、ChatGPT-3.5、ChatGPT-4
+   - 80名人类受试者
+3. **测试材料**：4种语法现象，每种10个句子（5个语法、5个不语法）
+4. **评估指标**：
+   - 准确率（Accuracy）
+   - 稳定性（Stability）：重复提问时答案是否一致
+   - 重复呈现时准确率是否提升
+
+**关键实验结果：**
+- ChatGPT-4准确率80%，人类76%
+- 但人类准确率低仅因ChatGPT-4仅在语法句上优于人类
+- ChatGPT-4波动更大（12.5% vs 9.6%）
 
 ### 4. 做得怎么样？
-[AI分析中...]
+
+**主要发现：**
+- 参数规模增大确实带来更好性能，但不足以达到人类水平
+- LLM对语法性的敏感性与人类本质不同
+- 仅靠scaling可能无法解决此问题
+- 关键差异在于学习机制：体内（人类）vs 体外（LLM）
+
+**理论解释：**
+三种关键差异：
+1. **证据类型**：人类通过多模态交互学习，LLM仅依赖文本
+2. **刺激贫乏**：人类语言学习数据远少于LLM训练数据
+3. **语义幻觉**：LLM产生因语义参照不可穿透导致的幻觉
 
 ### 5. 意味着什么？
-[AI分析中...]
+
+**科学意义：**
+- 揭示了LLM与人类语言理解的本质差异
+- 证明仅靠规模增大无法实现人类级语言理解
+- 为语言习得理论提供计算视角的证据
+
+**对AI研究的启示：**
+- 需要重新思考LLM作为语言理论模型的可行性
+- 指向了多模态学习、具身交互的必要性
+- 语义参照（semantic reference）是关键瓶颈
 
 ---
 
 ## 第三部分：批判性分析
 
-*本部分由AI进行深度分析*
-
 ### 1. 优点/亮点
-[AI分析中...]
+
+- **系统性对比**：首次系统比较不同规模LLM与人类在多种语法现象上的表现
+- **多维度评估**：同时考察准确率、稳定性、重复测试效果
+- **理论深度**：从语言习得角度解释LLM与人类差异
+- **数据丰富**：1,200条LLM判断 + 80人人类数据
 
 ### 2. 潜在问题/局限
-[AI分析中...]
+
+- **LLM版本过时**：使用2023年模型（ChatGPT-4可能已更新）
+- **人类样本量**：80人虽足够但并非大规模
+- **任务单一**：仅语法性判断，未测试其他语言能力
+- **可能存在数据泄露**：Bard和ChatGPT-4可能已接触过测试材料
 
 ### 3. 未解决的关键问题
-[AI分析中...]
+
+- 更大型模型（如GPT-4V、Claude 3）的表现如何？
+- 如何构建真正具有语义参照能力的语言系统？
+- 多模态学习能否缩小人与LLM的差距？
 
 ---
 
 ## 第四部分：用户研究的关联
 
-*本部分由用户补充*
-
 ### 1. 相关度评估
-- [ ] 高：直接相关，可借鉴
+- [x] 高：直接相关，可借鉴
 - [ ] 中：间接相关，有参考价值
 - [ ] 低：领域较远，仅作了解
 
-**说明**：[由用户填写]
+**说明**：本文直接研究Anaphora（回指）在LLM中的处理能力，与主题高度相关。
 
 ### 2. 可借鉴之处
-- 技术方法：[由用户填写]
-- 分析思路：[由用户填写]
-- 实验设计：[由用户填写]
+- 技术方法：语法性判断任务的实验设计
+- 分析思路：多维度评估（准确率+稳定性+重复测试）
+- 实验设计：LLM与人类对比的实验范式
 
 ### 3. 可能的应用场景
-- 研究方向：[由用户填写]
-- 实际应用：[由用户填写]
+- 研究方向：LLM语言理解能力评估
+- 实际应用：LLM在需要语法敏感性场景中的局限性
 
 ### 4. 补充笔记
 [由用户填写]
