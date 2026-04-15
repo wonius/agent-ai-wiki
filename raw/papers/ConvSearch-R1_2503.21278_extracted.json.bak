@@ -1,0 +1,21 @@
+{
+  "paper_id": "2503.21278",
+  "paper_slug": "convsearch-r1",
+  "pdf_path": "ConvSearch-R1_2503.21278.pdf",
+  "metadata": {
+    "title": "Gravitational-wave kicks impact spins of black holes from hierarchical mergers",
+    "authors": "Angela Borchers, Claire S. Ye, Maya Fishbach",
+    "published": "2025-03-27",
+    "abstract": "One proposed black hole formation channel involves hierarchical mergers, where black holes form through repeated binary mergers. Previous studies have shown that such black holes follow a near-universal spin distribution centered around 0.7. However, gravitational-wave kicks can eject remnants from their host environments, meaning only retained black holes can participate in subsequent mergers. We calculate the spin distribution of retained black holes in typical globular clusters, accounting for remnant kick velocities. Since the kick magnitude depends on the binary's mass ratio and spin orientations, certain configurations are more likely to be retained than others. This preferentially selects certain remnant spin magnitudes, skewing the spin distribution of second-generation black holes away from the universal distribution. In low escape velocity environments, the distribution can become bimodal, as remnants with spins of 0.7 typically receive larger kicks than other configurations. Regarding higher-generation black holes, their spin distribution does not converge to a unique form, and can span a broad range of spins, $a_f \\in (0.4,1)$, depending on their merger history, birth spins and the escape velocity. Additionally, we find that the presence of a small fraction of binaries with near-aligned spins can produce a second, more dominant peak, whose position depends on the birth spin magnitude. Our findings identify observable features of hierarchical merger black holes, which is essential for understanding their contribution to the gravitational-wave population. Moreover, the dependence of the spin distribution on astrophysical parameters means that precise spin measurements could provide insights into their formation environments.",
+    "arxiv_id": "2503.21278",
+    "journal": "arXiv"
+  },
+  "pdf_text_preview": "One proposed black hole formation channel involves hierarchical mergers, where black holes form through repeated binary mergers. Previous studies have shown that such black holes follow a near-universal spin distribution centered around 0.7. However, gravitational-wave kicks can eject remnants from their host environments, meaning only retained black holes can participate in subsequent mergers. We calculate the spin distribution of retained black holes in typical globular clusters, accounting for remnant kick velocities. Since the kick magnitude depends on the binary's mass ratio and spin orientations, certain configurations are more likely to be retained than others. This preferentially selects certain remnant spin magnitudes, skewing the spin distribution of second-generation black holes away from the universal distribution. In low escape velocity environments, the distribution can become bimodal, as remnants with spins of 0.7 typically receive larger kicks than other configurations. Regarding higher-generation black holes, their spin distribution does not converge to a unique form, and can span a broad range of spins, $a_f \\in (0.4,1)$, depending on their merger history, birth spins and the escape velocity. Additionally, we find that the presence of a small fraction of binaries with near-aligned spins can produce a second, more dominant peak, whose position depends on the birth spin magnitude. Our findings identify observable features of hierarchical merger black holes, which is essential for understanding their contribution to the gravitational-wave population. Moreover, the dependence of the spin distribution on astrophysical parameters means that precise spin measurements could provide insights into their formation environments.\n\n[以下是 PDF 正文提取内容]\n",
+  "pdf_text_full_length": 0,
+  "key_data": {
+    "percentages": [],
+    "concentrations": [],
+    "metrics": {},
+    "temperatures": []
+  }
+}

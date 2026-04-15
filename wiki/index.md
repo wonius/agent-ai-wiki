@@ -33,3 +33,109 @@ Master catalog of all wiki pages. Updated on every ingest.
 - [[summaries/convsearch-r1]] — ConvSearch-R1 论文完整摘要：检索信号驱动RL、Rank-Incentive Reward、RIRS
 - [[summaries/agentfold]] — AgentFold 论文完整摘要：核心问题、多尺度状态摘要、两种折叠操作、关键结果
 - [[summaries/skillrouter]] — SkillRouter 论文完整摘要：1.2B 全文检索+重排、80K 技能路由、74.0% Hit@1、5.8× 加速
+
+## New Summaries (2026-04-11)
+
+### Plan (8)
+- [[summaries/plan_2401.07324]] — Small LLMs Are Weak Tool Learners: α-UMi multi-LLM framework
+- [[summaries/plan_2402.02716]] — Understanding the Planning of LLM Agents: taxonomy & survey
+- [[summaries/plan_2408.00764]] — AgentGen: automatic environment & task generation
+- [[summaries/plan_2410.02958]] — AutoML-Agent: full AutoML pipeline via multi-agent
+- [[summaries/plan_2412.20505]] — CUP: cyclical urban planning with living-judging loop
+- [[summaries/plan_2503.17309]] — LLM+MAP: dual-armed robot PDDL planning
+- [[summaries/plan_2508.08322]] — Context Engineering for Code Assistants: 4-component workflow
+- [[summaries/plan_2512.21309]] — AgentReuse: plan reuse mechanism, 93.12% latency reduction
+
+### Context (8)
+- [[summaries/context_2311.03498]] — ICL as Associative Memory: Hopfield network theory
+- [[summaries/context_2407.09450]] — EM-LLM: episodic memory, 10M token retrieval
+- [[summaries/context_2506.06485]] — Task-Dependent Context-Memory Conflict analysis
+- [[summaries/context_2506.08184]] — Proactive Interference: working memory bottleneck
+- [[summaries/context_2509.18868]] — LLM Memory Taxonomy & Governance framework
+- [[summaries/context_2602.02108]] — OOMB: single-GPU 4M token training
+- [[summaries/context_2603.04814]] — (metadata incomplete)
+- [[summaries/context_2603.09023]] — Pichay: demand paging, 93% context reduction
+
+### Tool (8)
+- [[summaries/tool_2308.13062]] — ZeroLeak: LLM patches side-channel vulnerabilities
+- [[summaries/tool_2401.07324]] — Multi-LLM Agent: planner/caller/summarizer decomposition
+- [[summaries/tool_2405.07551]] — MuMath-Code: math + code tools fusion, 90.7% GSM8K
+- [[summaries/tool_2406.01698]] — GenZ: LLM reasoning platform analysis
+- [[summaries/tool_2406.12276]] — CodeNav: code repository navigation
+- [[summaries/tool_2411.16313]] — CATP-LLM: cost-aware tool planning
+- [[summaries/tool_2503.01763]] — ToolRet: tool retrieval benchmark (7.6k tasks, 43k tools)
+- [[summaries/tool_2510.11536]] — CodeWatcher: IDE telemetry data collection
+
+### Query (8)
+- [[summaries/query_2308.15272]] — AutoDroid: LLM-powered Android automation
+- [[summaries/query_2401.07324]] — (duplicate, see plan)
+- [[summaries/query_2402.06363]] — StruQ: prompt injection defense
+- [[summaries/query_2405.19749]] — LLM-based query recommendation
+- [[summaries/query_2501.01711]] — Legal aid query understanding
+- [[summaries/query_2504.06356]] — Query understanding in LLM-based CIS
+- [[summaries/query_2506.21384]] — Omni-RAG: live RAG
+- [[summaries/query_2509.09690]] — Job matching query enhancement
+
+### Multi-turn (8)
+- [[summaries/multiturn_2311.17376]] — CESAR: compositional instruction induction
+- [[summaries/multiturn_2402.13146]] — OLViT: multi-modal state tracking
+- [[summaries/multiturn_2408.01725]] — Drama Machine: character development simulation
+- [[summaries/multiturn_2409.11500]] — Multi-document grounded dialog generation
+- [[summaries/multiturn_2411.12307]] — Intent classification accuracy vs efficiency
+- [[summaries/multiturn_2502.13298]] — RealTOD: prompt chaining + fine-grained feedback
+- [[summaries/multiturn_2505.20451]] — AMULET: LLM jury for complex conversations
+- [[summaries/multiturn_2510.08158]] — Scenario-based refusal diagnostics
+
+### Anaphora (8)
+- [[summaries/anaphora_2308.14870]] — R-matrix for plasma opacities
+- [[summaries/anaphora_2404.14883]] — LLM vs Human language understanding scaling
+- [[summaries/anaphora_2412.14501]] — LLM + reasoningism
+- [[summaries/anaphora_2502.12509]] — (withdrawn)
+- [[summory/anaphora_2502.14119]] — Anaphora Accessibility for discourse
+- [[summaries/anaphora_2506.18091]] — Czech coreference resolution
+- [[summaries/anaphora_2509.11466]] — Improved LLM coreference
+- [[summaries/anaphora_2509.17505]] — CorefInst multilingual coreference
+
+## New Concepts (2026-04-11)
+
+### Planning
+- [[Plan Decomposition]] — α-UMi-style multi-LLM role splitting (planner/caller/summarizer)
+- [[Automatic Task Generation]] — AgentGen approach to synthetic environments/tasks
+- [[Plan Reuse]] — AgentReuse: caching and reusing agent plans for latency reduction
+- [[Context Engineering]] — Systematic 4-component workflow for code assistant contexts
+
+### Context & Memory
+- [[Episodic Memory]] — EM-LLM: human-inspired情景记忆 for 10M token retrieval
+- [[Context-Memory Conflict]] — Task-dependent balance between live context and stored memory
+- [[Proactive Interference]] — Working memory bottleneck in LLM context management
+- [[Memory Governance]] — Unified framework for LLM memory lifecycle (mechanism/evaluation/governance)
+- [[Demand Paging]] — Pichay: OS-style on-demand context loading, 93% reduction
+
+### Tool Use
+- [[Tool Decomposition]] — Splitting tool use into planner/caller/summarizer components
+- [[Tool Retrieval]] — ToolRet benchmark: 7.6k tasks, 43k tools for retrieval evaluation
+- [[Cost-Aware Planning]] — CATP-LLM: optimizing tool selection by API cost
+- [[Code Repair]] — ZeroLeak: LLM-based automated vulnerability patching
+
+### Query Understanding
+- [[Query Rewriting]] — Converting contextual queries to standalone retrievable form
+- [[Intent Classification]] — Multi-turn dialogue intent tracking
+- [[Live RAG]] — Omni-RAG: real-time retrieval-augmented generation
+
+### Multi-turn Dialogue
+- [[Instruction Induction]] — CESAR: automatic compositional instruction generation
+- [[Prompt Chaining]] — RealTOD: multi-step task completion via chained prompts
+- [[Refusal Diagnostics]] — Beyond over-refusal: scenario-based LLM behavior analysis
+
+### Anaphora & Coreference
+- [[LLM Coreference]] — Improving LLM's anaphora resolution capabilities
+- [[Multilingual Coreference]] — CorefInst: cross-lingual coreference benchmark
+- [[Discourse Understanding]] — Anaphora Accessibility theory for discourse-level LLM
+
+## New Entities (2026-04-11)
+
+- [[中山大学]] — plan_2401.07324 authors (Shen, Li, Quan) from Sun Yat-sen University
+- [[阿里巴巴]] — Multiple papers: plan_2402, context_2602, multiturn_2411
+- [[微软研究院]] — tool_2308.13062 (ZeroLeak)
+- [[Stanford]] — query_2504.06356 (CIS research)
+- [[CMU]] — multiturn_2408.01725 (Drama Machine)

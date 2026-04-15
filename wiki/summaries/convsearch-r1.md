@@ -12,7 +12,7 @@ tags: [Conversational Search, Query Reformulation, Reinforcement Learning, GRPO,
 **ConvSearch-R1: Enhancing Query Reformulation for Conversational Search with Reasoning via Reinforcement Learning**
 来源：EMNLP 2025 | 作者：复旦大学 + ByteDance
 
-## 一句话概括
+ConvSearch-R1通过自驱动策略预热（SDPWU）和基于排名激励奖励塑形的检索引导强化学习（GRPO），实现了完全无外部监督的对话查询重写，在3B参数规模下超越使用7B模型的先前最佳方法，平均提升超过10%。  ---
 
 通过"自蒸馏（SDPWU）+ 检索引导的强化学习（GRPO/RIRS）"两阶段框架，让 3B 小模型学会推理式查询改写，无需外部监督数据即刷新 SOTA。
 
